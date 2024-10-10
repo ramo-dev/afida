@@ -1,13 +1,17 @@
 import localFont from "next/font/local";
-import "./globals.css";
+import { headers } from 'next/headers'
+import { Providers } from "@/app/lib/providers";
+import { cookieToInitialState } from 'wagmi'
+import { config } from '@/app/lib/wagmi'
+import "./assets/styles/globals.css";
 
 const geistSans = localFont({
-  src: "./fonts/GeistVF.woff",
+  src: "./assets/fonts/GeistVF.woff",
   variable: "--font-geist-sans",
   weight: "100 900",
 });
 const geistMono = localFont({
-  src: "./fonts/GeistMonoVF.woff",
+  src: "./assets/fonts/GeistMonoVF.woff",
   variable: "--font-geist-mono",
   weight: "100 900",
 });
@@ -18,12 +22,16 @@ export const metadata = {
 };
 
 export default function RootLayout({ children }) {
+  const initialState = cookieToInitialState(
+    config,
+    headers().get('cookie'),
+  )
   return (
     <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
-        {children}
+      <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
+        <Providers initialState={initialState}>
+          {children}
+        </Providers>
       </body>
     </html>
   );
