@@ -83,7 +83,7 @@ export default function Dashboard({ params }) {
 
       {/* Sidebar */}
 
-      <div className="w-1/3 p-6 space-y-4">
+      <div className="w-1/3 p-6 space-y-4 sticky h-screen top-0">
         {/* Action Buttons */}
         <div className="flex space-x-4 mt-6">
           <button className="w-full py-2 bg-primary text-white rounded-full border-2 border-primary hover:bg-transparent hover:text-primary transition-colors">
