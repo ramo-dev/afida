@@ -3,10 +3,18 @@
 "use client"
 import { Bar } from 'react-chartjs-2';
 import { Chart as ChartJS, CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend } from 'chart.js';
+import { useEffect } from 'react';
 
 ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend);
 
-export default function Dashboard() {
+export default function Dashboard({ params }) {
+
+  const { campaign } = params;
+
+  useEffect(() => {
+    console.log(params);
+  }, [])
+
   // Dummy data for the chart
   const data = {
     labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
@@ -40,7 +48,7 @@ export default function Dashboard() {
       <div className="flex-1 flex items-center justify-center py-12">
         <div className="bg-black text-white rounded-lg w-full max-w-[800px]">
           {/* Greeting */}
-          <h1 className="text-[50px] font-bold mb-2 text-center">Bizna Campaign</h1>
+          <h1 className="text-[40px] font-bold mb-2 text-center">{campaign} Campaign</h1>
           <p className="text-center text-gray-400 mb-6">Track Bizna's campaign progress</p>
 
           {/* Metrics Section */}
