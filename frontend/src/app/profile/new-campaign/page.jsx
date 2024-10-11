@@ -1,3 +1,4 @@
+
 import Link from 'next/link';
 
 
@@ -7,7 +8,7 @@ export default function CreateAccount() {
       {/* Main Content */}
       <div className="flex items-center justify-center py-12">
         <div className="bg-black text-white rounded-lg w-full max-w-[600px]">
-          <h1 className=" text-[60px] font-bold mb-1 text-center leading-none">Let's start your Journey</h1>
+          <h1 className=" text-[60px] font-bold mb-1 text-center leading-none">Let's create your campaign</h1>
           <p className="text-center text-gray-400 mb-4 max-w-[200px] mx-auto">Please enter your campaign details</p>
 
 
@@ -61,7 +62,7 @@ export default function CreateAccount() {
               <input
                 type="date"
                 placeholder="Eg. 200,000"
-                className="w-full p-3 rounded-md bg-transparent text-gray-300 ring-2 ring-neutral-800 focus:outline-none focus:ring-2 focus:ring-primary"
+                className="mb-4 w-full p-3 rounded-md bg-transparent text-gray-300 ring-2 ring-neutral-800 focus:outline-none focus:ring-2 focus:ring-primary"
               />
             </div>
 

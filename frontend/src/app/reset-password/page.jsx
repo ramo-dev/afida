@@ -1,22 +1,10 @@
-
-
-import Link from 'next/link';
-import Logo from '@/app/assets/logo';
-
+import React from "react";
 
 export default function CreateAccount() {
   return (
-    <div className="min-h-screen bg-black text-white">
-      {/* Navbar */}
-      <nav className="flex justify-between items-center p-6 sticky top-0 w-full">
-        <Logo className="flex items-center gap-3" />
-        <Link href="/login" className='border-2 border-primary py-2 px-8 text-primary transition-all rounded-full hover:bg-primary hover:text-gray-200'>
-          <p className=" text-lg">Login</p>
-        </Link>
-      </nav>
-
+    <div className="rg-black text-white">
       {/* Main Content */}
-      <div className="flex items-center justify-center">
+      <div className="flex items-center justify-center py-12">
         <div className="bg-black text-white rounded-lg w-full max-w-[600px]">
           <h1 className=" text-[60px] font-bold mb-2 text-center">Forgot Password?</h1>
           <p className="text-center text-gray-400 mb-6 ">No worries, we'll send you reset insructions</p>

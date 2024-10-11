@@ -9,11 +9,13 @@
   },
   "dependencies": {
     "bufferutil": "^4.0.8",
+    "chart.js": "^4.4.4",
     "encoding": "^0.1.13",
     "lokijs": "^1.5.12",
     "next": "14.2.15",
     "pino-pretty": "^11.2.2",
     "react": "^18",
+    "react-chartjs-2": "^5.2.0",
     "react-dom": "^18",
     "supports-color": "^9.4.0",
     "utf-8-validate": "^5.0.10",
