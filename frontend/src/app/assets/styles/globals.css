@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -18,8 +20,31 @@
 body {
   color: var(--foreground);
   background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: "Outfit", Helvetica, sans-serif;
 }
+
+
+/* Targeting the scrollbar */
+*::-webkit-scrollbar {
+  width: 8px; /* Width of the scrollbar */
+}
+
+/* Styling the scrollbar track (background) */
+*::-webkit-scrollbar-track {
+  background: transparent; /* Making the track transparent */
+}
+
+/* Styling the scrollbar thumb (the draggable part) */
+*::-webkit-scrollbar-thumb {
+  background-color: var(--primary); /* Primary color (or whatever your "bg-primary" is) */
+  border-radius: 9999px; /* Fully rounded corners like a pill shape */
+}
+
+/* Adding a hover effect */
+*::-webkit-scrollbar-thumb:hover {
+  background-color: #0056b3; /* Darker blue when hovered */
+}
+
 
 @layer utilities {
   .text-balance {

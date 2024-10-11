@@ -1,101 +1,172 @@
+"use client";
+
+import React, { useState } from "react";
 import Image from "next/image";
+import hero from "./assets/images/hero.jpeg"
+import section2 from "./assets/images/section2.jpeg";
+import section3 from "./assets/images/section3.jpeg";
+import WhyBlockchain from "./components/WhyBlockchain";
+import Button from "./components/Button";
 
-export default function Home() {
+
+const LandingPage = () => {
+  const [openFAQ, setOpenFAQ] = useState(null);
+
+  const faqs = [
+    {
+      question: "How does crowdfunding on blockchain work?",
+      answer: "Crowdfunding on blockchain allows transparency in transactions, where funds are managed via smart contracts, ensuring secure and traceable donations.",
+    },
+    {
+      question: "How do I start a campaign?",
+      answer: "Starting a campaign is easy! Click on 'Get Started', create a wallet, and set up your campaign with a title, description, and fundraising goal.",
+    },
+    {
+      question: "What types of projects can I fund?",
+      answer: "You can fund a variety of projects, including startups, creative endeavors, community initiatives, and charitable causes. Just make sure they comply with our platform's guidelines.",
+    },
+    {
+      question: "Are there any fees associated with crowdfunding?",
+      answer: "Yes, there are minimal transaction fees involved in processing donations. These fees are significantly lower compared to traditional crowdfunding platforms.",
+    },
+    {
+      question: "How can I ensure my donation is secure?",
+      answer: "All transactions are secured through blockchain technology, which provides a transparent and tamper-proof record of all activities, ensuring the safety of your funds.",
+    },
+    {
+      question: "Can I track the progress of a campaign?",
+      answer: "Absolutely! You can track the progress of any campaign through the platform, including the total amount raised and the number of backers.",
+    },
+    {
+      question: "What happens if a campaign does not reach its goal?",
+      answer: "If a campaign does not reach its funding goal, funds will be returned to the backers, ensuring that no one loses their money without the project being funded.",
+    },
+    {
+      question: "How can I promote my campaign?",
+      answer: "Promoting your campaign can be done through social media, email newsletters, and leveraging your personal network. We also provide tools to help you reach a wider audience.",
+    },
+  ];
+
+
+  const toggleFAQ = (index) => {
+    setOpenFAQ(openFAQ === index ? null : index);
+  };
+
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="https://nextjs.org/icons/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-semibold">
-              app/page.js
-            </code>
-            .
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
+    <div className="bg-black sm:px-8  flex-col pt-5 mx-auto  text-white">
+      {/* Hero Section */}
+      <section className="min-h-full flex items-center px-10 ">
+        <div className="w-1/2">
+          <h1 className="text-7xl font-bold">Crowd Funding Made Easy</h1>
+          <p> </p>
+          <p className="mt-4 text-lg">
+            Effortless fundraising for your projects, whether it’s illness, NGO campaigns, or personal projects. We provide seamless solutions.
+          </p>
+          <div className="mt-6 space-x-4">
+            <Button name="Learn more" variant="secondary" />
+            <Button name="Get started" href="/onboard" variant="primary" />
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="https://nextjs.org/icons/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:min-w-44"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+          </div>
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
+        {/*  adjust image if necessary */}
+        <div className="w-1/2 flex justify-center">
+          <Image src={hero} alt="hero" width={500} height={500} />
+        </div>
+      </section>
+
+      {/* Simple, Secure, Transparent Section */}
+      <section className="min-h-screen flex items-center px-10 py-20">
+        <div className="w-1/2">
+          <Image src={section2} alt="section2" width={500} height={500} />
+        </div>
+        <div className="w-1/2 px-8">
+          <h2 className="text-6xl font-bold">Simple. Secure. Transparent.</h2>
+          <p className="text-lg my-5">Blockchain crowdfunding empowers creators and backers with unmatched transparency, security, and fairness. Join us today and start making a real impact!</p>
+          <p className="text-lg my-5">
+            Start a campaign, receive funds through smart contracts, and track donations—all on blockchain.
+          </p>
+          <Button name="Learn More" variant="secondary" />
+        </div>
+      </section>
+
+      {/* Step-by-Step Process */}
+      <section className="py-20 bg-black text-white">
+        <div className="text-center mb-12">
+          <h2 className="text-6xl font-bold">It’s as Simple as 1, 2, 3</h2>
+          <p className="text-gray-400 mt-2">Choose whether you're a donor or a campaign creator.</p>
+        </div>
+
+        <div className="flex justify-center space-x-12">
+          <div className="text-center">
+            <div className="border-primary border-4 text-2xl rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">1</div>
+            <p className="font-bold">Start a Campaign</p>
+            <p className="mt-2 text-gray-400">Set up your campaign with goals and details.</p>
+          </div>
+
+          <div className="text-center">
+            <div className="border-primary border-4  bg-purple text-2xl rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">2</div>
+            <p className="font-bold">Connect Your Wallet</p>
+            <p className="mt-2 text-gray-400">Link your crypto wallet for transactions.</p>
+          </div>
+
+          <div className="text-center">
+            <div className=" border-primary border-4  bg-purple text-2xl rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">3</div>
+            <p className="font-bold">Receive Funds</p>
+            <p className="mt-2 text-gray-400">Get donations securely and transparently.</p>
+          </div>
+        </div>
+      </section>
+
+      <section className="min-h-screen flex items-center px-10 py-20">
+        <div className="w-1/2">
+          <h1 className="text-5xl font-bold">Why Pay More for less</h1>
+          <p className="mt-4 text-lg">
+            We us Base_L2 to cut down transatcion costs, ao you keep more of your donations. Secure, fast and transparent - because why should your money get lst in fees?
+          </p>
+          <div className="mt-6 space-x-4">
+            <Button name="Get Started" variant="secondary" />
+          </div>
+        </div>
+        {/*  adjust image if necessary */}
+        <div className="w-1/2 flex justify-center">
           <Image
-            aria-hidden
-            src="https://nextjs.org/icons/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
+            src={section3}
+            alt=""
+            width={500}
+            height={500}
+            className="hue-rotate-[10%] brightness-50 contrast-200"
           />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="https://nextjs.org/icons/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="https://nextjs.org/icons/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
+        </div>
+      </section>
+
+      <section>
+        {/* Why Blockchain Section */}
+        <WhyBlockchain />
+      </section>
+
+      {/* FAQ Section */}
+      <section className="py-20 px-10 black">
+        <div className="text-center mb-10">
+          <h2 className="text-5xl font-bold">Have Questions? We Got Answers.</h2>
+        </div>
+
+        <div className="space-y-6">
+          {faqs.map((faq, index) => (
+            <div key={index} className="border-b border-gray-600 pb-4">
+              <div
+                className="flex justify-between items-center cursor-pointer"
+                onClick={() => toggleFAQ(index)}
+              >
+                <h3 className="text-lg font-bold">{faq.question}</h3>
+                <span className="text-primary text-2xl rounded-full px-[0.6rem] border-2 border-primary">{openFAQ === index ? '-' : '+'}</span>
+              </div>
+              {openFAQ === index && <p className="mt-3 text-gray-400">{faq.answer}</p>}
+            </div>
+          ))}
+        </div>
+      </section>
     </div>
   );
-}
+};
+
+export default LandingPage;

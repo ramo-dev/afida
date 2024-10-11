@@ -4,17 +4,10 @@ import { Providers } from "@/app/lib/providers";
 import { cookieToInitialState } from 'wagmi'
 import { config } from '@/app/lib/wagmi'
 import "./assets/styles/globals.css";
+import Navbar from "./components/Navbar";
+import Footer from "./components/Footer";
 
-const geistSans = localFont({
-  src: "./assets/fonts/GeistVF.woff",
-  variable: "--font-geist-sans",
-  weight: "100 900",
-});
-const geistMono = localFont({
-  src: "./assets/fonts/GeistMonoVF.woff",
-  variable: "--font-geist-mono",
-  weight: "100 900",
-});
+
 
 export const metadata = {
   title: "Create Next App",
@@ -28,10 +21,14 @@ export default function RootLayout({ children }) {
   )
   return (
     <html lang="en">
-      <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
+      <body className={`antialiased bg-black`}>
+
         <Providers initialState={initialState}>
+          <Navbar />
           {children}
+          <Footer />
         </Providers>
+
       </body>
     </html>
   );
