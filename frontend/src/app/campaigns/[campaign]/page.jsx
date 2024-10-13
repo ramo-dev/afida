@@ -83,22 +83,9 @@ export default function Dashboard({ params }) {
 
       {/* Sidebar */}
 
-      <div className="w-1/3 p-6 space-y-4 sticky h-screen top-0">
-        {/* Action Buttons */}
-        <div className="flex space-x-4 mt-6">
-          <button className="w-full py-2 bg-primary text-white rounded-full border-2 border-primary hover:bg-transparent hover:text-primary transition-colors">
-            Share
-          </button>
-          <button className="w-full py-2 bg-primary text-white rounded-full border-2 border-primary hover:bg-transparent hover:text-primary transition-colors">
-            Deposit
-          </button>
-          <button className="w-full py-2 bg-primary text-white rounded-full border-2 border-primary hover:bg-transparent hover:text-primary transition-colors">
-            Withdraw
-          </button>
-        </div>
-
+      <div className="w-1/3 p-6 space-y-4 sticky h-screen top-0 py-12">
         <div className="bg-black py-2 rounded-lg">
-          <h2 className="text-xl font-bold mb-4">Transaction History</h2>
+          <h2 className="text-2xl font-bold mb-4">Transaction History</h2>
           <ul className="space-y-2 text-gray-300">
             <li className="bg-neutral-700 p-3 rounded-md">
               <p className="text-sm  mb-1">Address: 0x123...abc • 10:30 AM</p>
@@ -118,6 +105,20 @@ export default function Dashboard({ params }) {
             </li>
           </ul>
         </div>
+        {/* Action Buttons */}
+        <div className="flex space-x-4 mt-6">
+          <button className="w-full py-2 bg-primary text-white rounded-full border-2 border-primary hover:bg-transparent hover:text-primary transition-colors">
+            Share
+          </button>
+          <button className="w-full py-2 bg-primary text-white rounded-full border-2 border-primary hover:bg-transparent hover:text-primary transition-colors">
+            Deposit
+          </button>
+          <button className="w-full py-2 bg-primary text-white rounded-full border-2 border-primary hover:bg-transparent hover:text-primary transition-colors">
+            Withdraw
+          </button>
+        </div>
+
+
       </div>
     </div>
   );
