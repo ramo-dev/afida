@@ -29,14 +29,14 @@ export default function Campaigns() {
 
   return (
     <div className="min-h-screen bg-black text-white py-12">
-      <div className="max-w-5xl mx-auto px-4">
+      <div className="max-w-6xl mx-auto px-4">
         <h1 className="text-4xl font-bold mb-8 text-center">Active Campaigns</h1>
 
         {/* Campaigns Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="flex flex-wrap gap-5 ">
           {campaigns.map((campaign) => (
             <Link href={`/campaigns/${campaign.id}`} key={campaign.id}>
-              <div className="bg-neutral-800 rounded-lg p-6 hover:bg-neutral-700 transition-colors">
+              <div className="min-w-[450px] flex-1 bg-neutral-800 rounded-lg p-6 hover:bg-neutral-700 transition-colors">
                 <h2 className="text-2xl font-bold mb-2">{campaign.name}</h2>
                 <p className="text-gray-400 mb-2">Goal: ${campaign.goal}</p>
                 <p className="text-gray-400 mb-2">Raised: ${campaign.raised}</p>

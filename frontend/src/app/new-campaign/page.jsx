@@ -1,12 +1,18 @@
+"use client"
 import Link from 'next/link';
+import useAccountStore from '../store/store';
+import Button from '../components/Button';
+import { useAccount } from 'wagmi';
 
 
 export default function CreateAccount() {
+  const { user } = useAccountStore();
+  const { address } = useAccount();
   return (
     <div className="min-h-screen bg-black text-white">
       {/* Main Content */}
       <div className="flex items-center justify-center py-12">
-        <div className="bg-black text-white rounded-lg w-full max-w-[600px]">
+        {address ? <div className="bg-black text-white rounded-lg w-full max-w-[600px]">
           <h1 className=" text-[60px] font-bold mb-1 text-center leading-none">Let's start your Journey</h1>
           <p className="text-center text-gray-400 mb-4 max-w-[200px] mx-auto">Please enter your campaign details</p>
 
@@ -61,23 +67,20 @@ export default function CreateAccount() {
               <input
                 type="date"
                 placeholder="Eg. 200,000"
-                className="w-full p-3 rounded-md bg-transparent text-gray-300 ring-2 ring-neutral-800 focus:outline-none focus:ring-2 focus:ring-primary"
+                className="mb-4 w-full p-3 rounded-md bg-transparent text-gray-300 ring-2 ring-neutral-800 focus:outline-none focus:ring-2 focus:ring-primary"
               />
             </div>
-
-            {/* Get Started Button */}
-            <Link href="/onboard/connect-wallet">
-              <button
-                type="submit"
-                className="w-full py-3 bg-primary text-white rounded-full border-2 border-primary hover:bg-transparent hover:text-primary transition-colors"
-
-              >
-                Continue
-              </button>
-            </Link>
+            <Button name="continue" href="/" variant="primary" type="submit" />
           </form>
 
         </div>
+          :
+          <div className='max-w-2xl py-12'>
+            <h1 className=" text-[60px] font-bold mb-1 text-center leading-none">Wallet not connected</h1>
+            <p className="text-center text-gray-400 mb-4 max-w-[300px] mx-auto">You need to connect to a smart wallet to recieve funds</p>
+            <Button name="Connect a wallet" variant="primary" href="/connect-wallet" className="w-full" />
+          </div>
+        }
       </div>
     </div>
   );

@@ -62,10 +62,9 @@ const LandingPage = () => {
           <p className="mt-4 text-lg">
             Effortless fundraising for your projects, whether it’s illness, NGO campaigns, or personal projects. We provide seamless solutions.
           </p>
-          <div className="mt-6 space-x-4">
-            <Button name="Learn more" variant="secondary" />
-            <Button name="Get started" href="/onboard" variant="primary" />
-
+          <div className="mt-6 space-x-4 flex">
+            <Button name="Join today" variant="secondary" href="/register" />
+            <Button name="View Campaigns" href="/campaigns" variant="primary" />
           </div>
         </div>
         {/*  adjust image if necessary */}
@@ -93,14 +92,14 @@ const LandingPage = () => {
       <section className="py-20 bg-black text-white">
         <div className="text-center mb-12">
           <h2 className="text-6xl font-bold">It’s as Simple as 1, 2, 3</h2>
-          <p className="text-gray-400 mt-2">Choose whether you're a donor or a campaign creator.</p>
+          {/*<p className="text-gray-400 mt-2"></p>*/}
         </div>
 
         <div className="flex justify-center space-x-12">
           <div className="text-center">
             <div className="border-primary border-4 text-2xl rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">1</div>
-            <p className="font-bold">Start a Campaign</p>
-            <p className="mt-2 text-gray-400">Set up your campaign with goals and details.</p>
+            <p className="font-bold">Create an account</p>
+            <p className="mt-2 text-gray-400">Set up an account with afida.</p>
           </div>
 
           <div className="text-center">

@@ -1,11 +1,14 @@
-
+"use client"
 import Image from 'next/image';
 import Link from 'next/link';
+import Button from '../components/Button';
+import useAccountStore from '../store/store';
+import { Loader2 } from 'lucide-react';
+import { useRouter } from 'next/navigation';
 
 // Dummy data for campaigns
 const currentCampaigns = [
   { id: 'bizna-campaign', name: 'Bizna Campaign', goal: 50000, raised: 30000, endDate: 'Dec 31, 2024' },
-  { id: 'water-project', name: 'Water Project', goal: 150000, raised: 80000, endDate: 'Jan 20, 2025' },
 ];
 
 const previousCampaigns = [
@@ -15,6 +18,18 @@ const previousCampaigns = [
 export default function Profile() {
   const walletAddress = '0x123...abc';
   const dicebearAvatar = `https://api.dicebear.com/9.x/identicon/svg?seed=Felix`;
+
+  const { user, loading } = useAccountStore();
+  const route = useRouter()
+
+  if (loading) {
+    return <Loader2 className="animate-spin scale-125" />
+  }
+
+  if (!loading && !user) {
+    route.replace("/");
+    return null
+  }
 
   return (
     <div className="min-h-screen bg-black text-white p-6">
@@ -90,28 +105,21 @@ export default function Profile() {
           <div className="space-y-4">
             <div className="flex justify-between items-center">
               <span className="text-gray-400">Add a campaign</span>
-              <Link href="/profile/new-campaign" >
-
-                <button className="px-7 py-3 bg-primary text-white rounded-full border-2 border-primary hover:bg-transparent hover:text-primary transition-colors">New campaign</button>
-              </Link>
+              <Button href="/new-campaign" variant="primary" name="New Campaign" className="w-[160px]" />
 
             </div>
 
             <div className="flex justify-between items-center">
               <span className="text-gray-400">Change Wallet Address</span>
-              <button className="w-2/12 py-3 bg-primary text-white rounded-full border-2 border-primary hover:bg-transparent hover:text-primary transition-colors">Edit</button>
+              <Button variant="primary" href="/connect-wallet" name="Edit" className="w-[160px]" />
             </div>
             <div className="flex justify-between items-center">
               <span className="text-gray-400">Notification Preferences</span>
-              <button className="w-2/12 py-3 bg-primary text-white rounded-full border-2 border-primary hover:bg-transparent hover:text-primary transition-colors">Edit</button>
-            </div>
-            <div className="flex justify-between items-center">
-              <span className="text-gray-400">Profile Settings</span>
-              <button className="w-2/12 py-3 bg-primary text-white rounded-full border-2 border-primary hover:bg-transparent hover:text-primary transition-colors">Edit</button>
+              <Button variant="primary" name="Edit" className="w-[160px]" />
             </div>
             <div className="flex justify-between items-center">
               <span className="text-gray-400">Log Out</span>
-              <button className="w-2/12 py-3 bg-red-600 text-white rounded-full border-2 border-red-600 hover:bg-transparent hover:text-red-600 transition-colors">Log Out</button>
+              <Button variant="danger" name="Logout" className="w-[160px]" />
             </div>
           </div>
         </div>
