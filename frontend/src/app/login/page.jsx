@@ -26,7 +26,6 @@ export default function CreateAccount() {
       return
     } else {
       login(email, password);
-      console.log(form)
     }
   }
 

@@ -15,7 +15,7 @@ export default function Button({ name, variant, type, href, className, loading, 
   }
 
   // Dark shade for disabled state
-  const disabledClass = "bg-gray-400 text-gray-700 cursor-not-allowed opacity-50 border-none hover:bg-gray-400 hover:text-gray-700";
+  const disabledClass = "!bg-gray-400 text-gray-700 cursor-not-allowed opacity-50 border-none hover:!bg-gray-400 hover:!text-gray-700";
 
   // Render as a Link if href is provided
   if (href) {
