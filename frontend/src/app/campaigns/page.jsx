@@ -52,25 +52,26 @@ export default function Campaigns() {
     <div className="min-h-screen bg-black text-white py-12">
       <div className="max-w-6xl mx-auto px-4">
         {/* Header */}
-        <div className="flex flex-col md:flex-row justify-between items-center mb-8">
-          <h1 className="text-4xl font-bold mb-4 md:mb-0 text-start">Active Campaigns</h1>
-          <div className="flex items-center gap-4 md:flex-row flex-col w-full">
+        <div className="flex flex-col  justify-between items-center mb-8">
+          <h1 className="text-4xl font-bold mb-4 md:mb-0 self-start">Active Campaigns</h1>
+          <div className="flex items-center gap-4 md:flex-row flex-col w-full mt-5 ">
             {/* Search Bar */}
-            <div className="relative text-black md:w-max w-full">
+            <div className="relative text-black md:w-full w-full items-center">
               <input
                 type="text"
-                className="bg-neutral-700 text-white p-2 rounded-full pl-10 focus:outline-none w-full"
+
+                className="w-full py-2 px-3 bg-transparent border-2 border-neutral-700 text-white rounded-full pl-10 focus:outline-none focus:ring-2 focus:ring-primary"
                 placeholder="Search campaigns..."
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
               />
-              <Search className="absolute top-2 left-3 text-white w-5 h-5" />
+              <Search className="text-neutral-500 absolute top-3 left-3 text-white w-5 h-5" />
             </div>
 
             {/* Sort Dropdown */}
-            <div className="relative md:w-max w-full">
+            <div className="relative md:w-max w-full min-w-[300px]">
               <select
-                className="bg-neutral-700 text-white p-2 rounded-full focus:outline-none cursor-pointer w-full"
+                className="bg-neutral-700 text-white p-3 rounded-full focus:outline-none cursor-pointer w-full"
                 value={sortType}
                 onChange={(e) => setSortType(e.target.value)}
               >
@@ -79,7 +80,7 @@ export default function Campaigns() {
                 <option value="raised">Sort by Raised</option>
                 <option value="endDate">Sort by End Date</option>
               </select>
-              <SortAsc className="absolute top-2 right-3 text-white w-5 h-5 pointer-events-none" />
+              <SortAsc className="absolute top-3 right-5 text-white w-5 h-5 pointer-events-none" />
             </div>
           </div>
         </div>
