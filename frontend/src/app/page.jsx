@@ -47,41 +47,38 @@ const LandingPage = () => {
     },
   ];
 
-
   const toggleFAQ = (index) => {
     setOpenFAQ(openFAQ === index ? null : index);
   };
 
   return (
-    <div className="bg-black sm:px-8  flex-col pt-5 mx-auto  text-white">
+    <div className="bg-black text-white sm:px-4 lg:px-8 pt-5 mx-auto">
       {/* Hero Section */}
-      <section className="min-h-full flex items-center px-10 ">
-        <div className="w-1/2">
-          <h1 className="text-7xl font-bold">Crowd Funding Made Easy</h1>
-          <p> </p>
-          <p className="mt-4 text-lg">
+      <section className="min-h-full flex flex-col-reverse md:flex-row items-center px-6 sm:px-10 py-12 md:py-0">
+        <div className="w-full md:w-1/2 space-y-6">
+          <h1 className="text-5xl lg:text-7xl font-bold">Crowdfunding Made Easy</h1>
+          <p className="mt-4 text-base sm:text-lg">
             Effortless fundraising for your projects, whether it’s illness, NGO campaigns, or personal projects. We provide seamless solutions.
           </p>
-          <div className="mt-6 space-x-4 flex">
+          <div className="mt-6 flex items-center flex-row space-x-4">
             <Button name="Join today" variant="secondary" href="/register" />
             <Button name="View Campaigns" href="/campaigns" variant="primary" />
           </div>
         </div>
-        {/*  adjust image if necessary */}
-        <div className="w-1/2 flex justify-center">
-          <Image src={hero} alt="hero" width={500} height={500} />
+        <div className="w-full md:w-1/2 flex justify-center">
+          <Image src={hero} alt="hero" width={500} height={500} className=" md:block hidden" />
         </div>
       </section>
 
       {/* Simple, Secure, Transparent Section */}
-      <section className="min-h-screen flex items-center px-10 py-20">
-        <div className="w-1/2">
-          <Image src={section2} alt="section2" width={500} height={500} />
+      <section className="min-h-screen flex flex-col md:flex-row items-center px-6 sm:px-10 py-20">
+        <div className="w-full md:w-1/2">
+          <Image src={section2} alt="section2" width={500} height={500} className="w-full h-auto" />
         </div>
-        <div className="w-1/2 px-8">
-          <h2 className="text-6xl font-bold">Simple. Secure. Transparent.</h2>
-          <p className="text-lg my-5">Blockchain crowdfunding empowers creators and backers with unmatched transparency, security, and fairness. Join us today and start making a real impact!</p>
-          <p className="text-lg my-5">
+        <div className="w-full md:w-1/2 md:px-8">
+          <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold">Simple. Secure. Transparent.</h2>
+          <p className="text-base sm:text-lg my-5">Blockchain crowdfunding empowers creators and backers with unmatched transparency, security, and fairness. Join us today and start making a real impact!</p>
+          <p className="text-base sm:text-lg my-5">
             Start a campaign, receive funds through smart contracts, and track donations—all on blockchain.
           </p>
           <Button name="Learn More" variant="secondary" />
@@ -89,64 +86,63 @@ const LandingPage = () => {
       </section>
 
       {/* Step-by-Step Process */}
-      <section className="py-20 bg-black text-white">
+      <section className="py-20 bg-black text-white px-3">
         <div className="text-center mb-12">
-          <h2 className="text-6xl font-bold">It’s as Simple as 1, 2, 3</h2>
-          {/*<p className="text-gray-400 mt-2"></p>*/}
+          <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold">It’s as Simple as 1, 2, 3</h2>
         </div>
 
-        <div className="flex justify-center space-x-12">
+        <div className="flex flex-col sm:flex-row justify-center space-y-8 sm:space-y-0 sm:space-x-12">
           <div className="text-center">
             <div className="border-primary border-4 text-2xl rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">1</div>
             <p className="font-bold">Create an account</p>
-            <p className="mt-2 text-gray-400">Set up an account with afida.</p>
+            <p className="mt-2 text-gray-400">Set up an account with Afida.</p>
           </div>
 
           <div className="text-center">
-            <div className="border-primary border-4  bg-purple text-2xl rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">2</div>
+            <div className="border-primary border-4 text-2xl rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">2</div>
             <p className="font-bold">Connect Your Wallet</p>
             <p className="mt-2 text-gray-400">Link your crypto wallet for transactions.</p>
           </div>
 
           <div className="text-center">
-            <div className=" border-primary border-4  bg-purple text-2xl rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">3</div>
+            <div className="border-primary border-4 text-2xl rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">3</div>
             <p className="font-bold">Receive Funds</p>
             <p className="mt-2 text-gray-400">Get donations securely and transparently.</p>
           </div>
         </div>
       </section>
 
-      <section className="min-h-screen flex items-center px-10 py-20">
-        <div className="w-1/2">
-          <h1 className="text-5xl font-bold">Why Pay More for less</h1>
-          <p className="mt-4 text-lg">
-            We us Base_L2 to cut down transatcion costs, ao you keep more of your donations. Secure, fast and transparent - because why should your money get lst in fees?
+      {/* Why Pay More Section */}
+      <section className="md:min-h-screen flex flex-col md:flex-row items-center px-6 sm:px-10 py-20">
+        <div className="w-full md:w-1/2">
+          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold">Why Pay More for Less?</h1>
+          <p className="mt-4 text-base sm:text-lg">
+            We use Base_L2 to cut down transaction costs, so you keep more of your donations. Secure, fast, and transparent - because why should your money get lost in fees?
           </p>
           <div className="mt-6 space-x-4">
             <Button name="Get Started" variant="secondary" />
           </div>
         </div>
-        {/*  adjust image if necessary */}
-        <div className="w-1/2 flex justify-center">
+        <div className="w-full md:w-1/2 flex justify-center md:block hidden">
           <Image
             src={section3}
-            alt=""
+            alt="section3"
             width={500}
             height={500}
-            className="hue-rotate-[10%] brightness-50 contrast-200"
+            className="w-full h-auto hue-rotate-[10%] brightness-50 contrast-200 "
           />
         </div>
       </section>
 
-      <section>
-        {/* Why Blockchain Section */}
+      {/* Why Blockchain Section */}
+      <section className="md:block hidden">
         <WhyBlockchain />
       </section>
 
       {/* FAQ Section */}
-      <section className="py-20 px-10 black">
+      <section className="py-20 px-6 sm:px-10 bg-black">
         <div className="text-center mb-10">
-          <h2 className="text-5xl font-bold">Have Questions? We Got Answers.</h2>
+          <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold">Have Questions? We Got Answers.</h2>
         </div>
 
         <div className="space-y-6">
@@ -157,7 +153,9 @@ const LandingPage = () => {
                 onClick={() => toggleFAQ(index)}
               >
                 <h3 className="text-lg font-bold">{faq.question}</h3>
-                <span className="text-primary text-2xl rounded-full px-[0.6rem] border-2 border-primary">{openFAQ === index ? '-' : '+'}</span>
+                <span className="text-primary text-2xl rounded-full px-[0.6rem] border-2 border-primary">
+                  {openFAQ === index ? '-' : '+'}
+                </span>
               </div>
               {openFAQ === index && <p className="mt-3 text-gray-400">{faq.answer}</p>}
             </div>

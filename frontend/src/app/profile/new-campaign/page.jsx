@@ -1,8 +1,25 @@
-
+"use client"
+import useAccountStore from '@/app/store/store';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
+import Loading from '@/app/loading';
 
 
 export default function CreateAccount() {
+
+
+  const { user, loading } = useAccountStore();
+  const route = useRouter();
+
+  if (loading) {
+    return <Loading />
+  }
+
+  if (!loading && !user) {
+    route.replace("/");
+    return null
+  }
+
   return (
     <div className="min-h-screen bg-black text-white">
       {/* Main Content */}

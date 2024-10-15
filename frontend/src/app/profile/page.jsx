@@ -3,7 +3,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import Button from '../components/Button';
 import useAccountStore from '../store/store';
-import { Loader2 } from 'lucide-react';
+import Loading from '../loading';
 import { useRouter } from 'next/navigation';
 
 // Dummy data for campaigns
@@ -12,7 +12,7 @@ const currentCampaigns = [
 ];
 
 const previousCampaigns = [
-  { id: 'plant-trees and seedlings', name: 'Plant Trees Initiative', goal: 10000, raised: 10000, endDate: 'Jan 15, 2024' },
+  { id: 'plant-trees', name: 'Plant Trees Initiative', goal: 10000, raised: 10000, endDate: 'Jan 15, 2024' },
 ];
 
 export default function Profile() {
@@ -22,8 +22,8 @@ export default function Profile() {
   const { user, loading } = useAccountStore();
   const route = useRouter()
 
-  if (loading) {
-    return <Loader2 className="animate-spin scale-125" />
+  if (loading && !user) {
+    return <Loading />
   }
 
   if (!loading && !user) {

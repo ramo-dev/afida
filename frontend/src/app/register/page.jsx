@@ -36,14 +36,14 @@ export default function CreateAccount() {
 
   return (
     <div className="min-h-screen bg-black text-white">
-      <div className="flex items-center justify-center py-12">
-        <div className="bg-black text-white rounded-lg w-full max-w-[600px]">
-          <h1 className="text-[60px] font-bold mb-1 text-center">Create Account</h1>
+      <div className="flex items-center justify-center py-12 md:px-0 px-4">
+        <div className="bg-black text-white rounded-lg w-full md:max-w-[600px]">
+          <h1 className="md:text-[60px] text-4xl font-bold mb-1 text-center">Create Account</h1>
           <p className="text-center text-gray-400 mb-4 max-w-[200px] mx-auto">
             Create an account to start receiving funds
           </p>
 
-          <form className="space-y-7 w-8/12 mx-auto" onSubmit={handleSubmit}>
+          <form className="space-y-7 md:w-8/12 w-full mx-auto" onSubmit={handleSubmit}>
             {error && (
               <div className="rounded-lg text-red-400 my-2 border-primary border w-full bg-purple-400/20 p-4">
                 {error}
@@ -93,8 +93,8 @@ export default function CreateAccount() {
                 <div className="flex gap-1">
                   {connectors.map((connector) => (
                     <button
-                      key={connector.id} // Fixed key from `uid` to `id`
-                      className="h-10 rounded-md mx-2 bg-primary flex-1 text-[10px] p-2"
+                      key={connector.id}
+                      className="h-10 rounded-md mx-2 bg-primary flex-1 text-[10px] p-2 "
                       onClick={() => connect({ connector })}
                       type="button"
                     >
@@ -106,7 +106,7 @@ export default function CreateAccount() {
             )}
 
             {/* Terms and Conditions */}
-            <div className="flex items-center mb-6 w-full text-sm">
+            <div className="flex items-center mb-6 w-full md:text-sm text-xs text-nowrap">
               <input type="checkbox" id="terms" className="mr-2" required />
               <label htmlFor="terms" className="text-gray-400 flex gap-1">
                 By checking, you agree to the
@@ -126,6 +126,8 @@ export default function CreateAccount() {
               disabled={!address || loading}
             />
           </form>
+
+
         </div>
       </div>
     </div>
