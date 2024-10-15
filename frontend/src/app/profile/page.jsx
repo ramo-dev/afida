@@ -12,7 +12,7 @@ const currentCampaigns = [
 ];
 
 const previousCampaigns = [
-  { id: 'plant-trees', name: 'Plant Trees Initiative', goal: 10000, raised: 10000, endDate: 'Jan 15, 2024' },
+  { id: 'plant-trees and seedlings', name: 'Plant Trees Initiative', goal: 10000, raised: 10000, endDate: 'Jan 15, 2024' },
 ];
 
 export default function Profile() {
