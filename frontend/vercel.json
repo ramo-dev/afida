@@ -1,1 +1,8 @@
-{ "rewrites": [{ "source": "/(.*)", "destination": "/" }] }
+
+{
+  "rewrites": [
+    { "source": "/campaigns/:id", "destination": "/campaigns/:id" },
+    { "source": "/(.*)", "destination": "/" }
+  ]
+}
+
