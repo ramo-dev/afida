@@ -1,36 +1,47 @@
-"use client"
+"use client";
+
 import Link from 'next/link';
 import { Search, SortAsc, DollarSign, Calendar } from 'lucide-react';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import Loading from "./loading"
 
 export default function Campaigns() {
   const [searchTerm, setSearchTerm] = useState('');
   const [sortType, setSortType] = useState('name');
+  const [campaigns, setCampaigns] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
-  const campaigns = [
-    {
-      id: 'bizna-campaign',
-      name: 'Bizna Campaign',
-      goal: 50000,
-      raised: 30000,
-      endDate: 'Dec 31, 2024',
-    },
-    {
-      id: 'tusome-initiative',
-      name: 'Tusome Initiative',
-      goal: 20000,
-      raised: 12000,
-      endDate: 'Nov 15, 2024',
-    },
-    {
-      id: 'water-project',
-      name: 'Water Project',
-      goal: 150000,
-      raised: 80000,
-      endDate: 'Jan 20, 2025',
-    },
-  ];
+  // Fetch campaigns from the API
+  useEffect(() => {
+    async function fetchCampaigns() {
+      try {
+        const response = await fetch('https://afida-backend-c9432f18675a.herokuapp.com/api/projects');
+        if (!response.ok) throw new Error('Failed to fetch campaigns');
+        const data = await response.json();
+        // Map the data to fit the structure
+        const formattedCampaigns = data.map((campaign) => ({
+          id: campaign._id,
+          name: campaign.name,
+          organizer: campaign.organizer,
+          description: campaign.description,
+          category: campaign.category,
+          goal: campaign.targetAmount,
+          raised: 0,
+          endDate: new Date(campaign.date).toLocaleDateString(),
+        }));
+        setCampaigns(formattedCampaigns);
+      } catch (err) {
+        console.error("Error fetching campaigns:", err);
+        setError('Failed to load campaigns.');
+      } finally {
+        setLoading(false);
+      }
+    }
+    fetchCampaigns();
+  }, []);
 
+  // Filter and sort campaigns
   const filteredCampaigns = campaigns
     .filter((campaign) =>
       campaign.name.toLowerCase().includes(searchTerm.toLowerCase())
@@ -48,6 +59,14 @@ export default function Campaigns() {
       }
     });
 
+  if (loading) {
+    return <Loading />;
+  }
+
+  if (error) {
+    return <div className="text-red-500">{error}</div>;
+  }
+
   return (
     <div className="min-h-screen bg-black text-white py-12">
       <div className="max-w-6xl mx-auto px-4">
@@ -59,7 +78,6 @@ export default function Campaigns() {
             <div className="relative text-black md:w-full w-full items-center">
               <input
                 type="text"
-
                 className="w-full py-2 px-3 bg-transparent border-2 border-neutral-700 text-white rounded-full pl-10 focus:outline-none focus:ring-2 focus:ring-primary"
                 placeholder="Search campaigns..."
                 value={searchTerm}
@@ -91,6 +109,7 @@ export default function Campaigns() {
             <Link href={`/campaigns/${campaign.id}`} key={campaign.id}>
               <div className="bg-neutral-800 rounded-lg p-6 hover:bg-neutral-700 transition-colors">
                 <h2 className="text-xl font-bold mb-4">{campaign.name}</h2>
+                <p className='text-sm mb-4'>{campaign.description}</p>
                 <div className="flex items-center gap-2 mb-2">
                   <DollarSign className="text-teal-400 w-4 h-4" />
                   <p className="text-gray-400">Goal: <span className="text-white">${campaign.goal.toLocaleString()}</span></p>

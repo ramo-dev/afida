@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import hero from "./assets/images/hero.jpeg"
 import section2 from "./assets/images/section2.jpeg";
@@ -11,6 +11,8 @@ import Button from "./components/Button";
 
 const LandingPage = () => {
   const [openFAQ, setOpenFAQ] = useState(null);
+
+
 
   const faqs = [
     {

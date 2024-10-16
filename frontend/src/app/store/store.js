@@ -1,5 +1,4 @@
 import { create } from "zustand";
-import { useAccount } from "wagmi";
 
 
 async function handleLogin(email, password) {
@@ -8,12 +7,12 @@ async function handleLogin(email, password) {
       method: "POST",
       headers: {
         'Content-Type': 'application/json',
-        Autharization: ""
       },
       body: JSON.stringify({ email, password })
     })
 
     const data = await resp.json();
+    console.log(data);
     return data;
   } catch (err) {
     throw new Error(err.message || "An error occurred during Login");
@@ -27,12 +26,12 @@ async function handleRegister(fullName, email, password, walletAddress) {
       method: "POST",
       headers: {
         'Content-Type': 'application/json',
-        Authorization: ""
       },
-      body: JSON.stringify({ fullName, email, password, smartWalletAddress: walletAddress })
+      body: JSON.stringify({ name: fullName, email, password, smartWalletAddress: walletAddress })
     });
 
     const data = await resp.json();
+    console.log(data);
     return data;
   } catch (err) {
     throw new Error(err.message || "An error occurred during Registration");

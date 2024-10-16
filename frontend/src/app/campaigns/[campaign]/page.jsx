@@ -2,7 +2,7 @@
 import { useState } from "react";
 import { Bar } from "react-chartjs-2";
 import { Chart as ChartJS, CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend } from "chart.js";
-import { DownloadCloud, Search, Share2, UploadCloud } from "lucide-react";
+import { DownloadCloud, HandCoins, Search, Share2, UploadCloud } from "lucide-react";
 
 ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend);
 
@@ -85,6 +85,16 @@ export default function Dashboard({ params }) {
                 </div>
                 <p className="text-gray-400 mt-2 text-center">{progress.toFixed(2)}% of goal reached</p>
               </div>
+              <div className="flex space-x-4 mt-6 md:hidden block">
+                <button className="w-full py-2 bg-primary text-white rounded-full border-2 border-primary hover:bg-transparent hover:text-primary transition-colors flex items-center justify-center space-x-2">
+                  <Share2 size={18} />
+                  <span>Share</span>
+                </button>
+                <button className="w-full py-2 bg-primary text-white rounded-full border-2 border-primary hover:bg-transparent hover:text-primary transition-colors flex items-center justify-center space-x-2">
+                  <HandCoins size={18} />
+                  <span>Contribute</span>
+                </button>
+              </div>
             </div>
           </div>
         </div>
@@ -124,18 +134,14 @@ export default function Dashboard({ params }) {
         </div>
 
         {/* Action Buttons */}
-        <div className="flex space-x-4 mt-6">
+        <div className="space-x-4 mt-6 md:flex hidden">
           <button className="w-full py-2 bg-primary text-white rounded-full border-2 border-primary hover:bg-transparent hover:text-primary transition-colors flex items-center justify-center space-x-2">
             <Share2 size={18} />
             <span>Share</span>
           </button>
           <button className="w-full py-2 bg-primary text-white rounded-full border-2 border-primary hover:bg-transparent hover:text-primary transition-colors flex items-center justify-center space-x-2">
-            <UploadCloud size={18} />
-            <span>Deposit</span>
-          </button>
-          <button className="w-full py-2 bg-primary text-white rounded-full border-2 border-primary hover:bg-transparent hover:text-primary transition-colors flex items-center justify-center space-x-2">
-            <DownloadCloud size={18} />
-            <span>Withdraw</span>
+            <HandCoins size={18} />
+            <span>Contribute</span>
           </button>
         </div>
       </div>

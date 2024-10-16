@@ -66,7 +66,7 @@ export default function CreateAccount() {
               name="email"
               onChange={handleChange}
               value={form.email}
-              placeholder="Username or email"
+              placeholder="Email"
               className="w-full p-3 rounded-md bg-transparent ring-2 ring-neutral-800 text-gray-300 focus:outline-none focus:ring-2 focus:ring-primary"
             />
 
