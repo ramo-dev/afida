@@ -1,14 +1,22 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Menu, X, Loader2 } from "lucide-react";
 import Button from "./Button";
 import Logo from "../assets/logo";
 import useAccountStore from "../store/store";
 
 const Navbar = () => {
-  const { user, loading } = useAccountStore();
+  const { verify, user, loading } = useAccountStore();
   const [menuOpen, setMenuOpen] = useState(false); // State to control the burger menu
+
+  useEffect(() => {
+    async function handleVerify() {
+      const walletAddess = localStorage.getItem("address");
+      await verify(walletAddess);
+    };
+    handleVerify();
+  }, [])
 
   const toggleMenu = () => setMenuOpen(!menuOpen);
 

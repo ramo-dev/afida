@@ -49,7 +49,7 @@ export default function Profile() {
           {/* Wallet Address */}
           <div>
             <h1 className="text-3xl font-bold">Your Profile</h1>
-            <p className="text-gray-400">Wallet Address: <span className="text-white">{walletAddress}</span></p>
+            <p className="text-gray-400">Wallet Address: <span className="text-white">{user.smartWalletAddress}</span></p>
           </div>
         </div>
 

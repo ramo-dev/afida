@@ -1,7 +1,7 @@
 "use client";
 
 import Link from 'next/link';
-import { Search, SortAsc, DollarSign, Calendar } from 'lucide-react';
+import { Search, SortAsc, DollarSign, Calendar, User } from 'lucide-react';
 import { useEffect, useState } from 'react';
 import Loading from "./loading"
 
@@ -122,7 +122,10 @@ export default function Campaigns() {
                   <Calendar className="text-teal-400 w-4 h-4" />
                   <p className="text-gray-400">End Date: <span className="text-white">{campaign.endDate}</span></p>
                 </div>
-
+                <div className="flex items-center gap-2 mt-2">
+                  <User className="text-teal-400 w-4 h-4" />
+                  <p className="text-gray-400">Organizer: <span className="text-white">{campaign.organizer.name}</span></p>
+                </div>
                 {/* Progress Bar */}
                 <div className="mt-4">
                   <div className="w-full bg-neutral-700 rounded-full h-3">

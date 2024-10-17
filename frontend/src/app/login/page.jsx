@@ -3,13 +3,15 @@ import Link from 'next/link';
 import { useState } from 'react';
 import useAccountStore from '../store/store';
 import Button from '../components/Button';
+import { useRouter } from 'next/navigation';
 
 export default function CreateAccount() {
   const [form, setForm] = useState({
     email: '',
     password: ''
   });
-  const { login, loading, error } = useAccountStore();
+  const { user, login, loading, error } = useAccountStore();
+  const route = useRouter();
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -27,6 +29,10 @@ export default function CreateAccount() {
       login(email, password);
     }
   };
+
+  if (user) {
+    route.replace("/campaigns");
+  }
 
   return (
     <div className="md:min-h-screen bg-black text-white flex items-center justify-center py-12">

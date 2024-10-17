@@ -3,7 +3,7 @@ import { create } from "zustand";
 
 async function handleLogin(email, password) {
   try {
-    const resp = await fetch("/api/login", {
+    const resp = await fetch(`${process.env.NEXT_PUBLIC_AFIDA_BASE}/users/login`, {
       method: "POST",
       headers: {
         'Content-Type': 'application/json',
@@ -22,7 +22,7 @@ async function handleLogin(email, password) {
 
 async function handleRegister(fullName, email, password, walletAddress) {
   try {
-    const resp = await fetch("/api/register", {
+    const resp = await fetch(`${process.env.NEXT_PUBLIC_AFIDA_BASE}/users/register`, {
       method: "POST",
       headers: {
         'Content-Type': 'application/json',
@@ -59,7 +59,29 @@ async function handleAddWallet(walletAddress) {
 }
 
 
+async function handleVerify(walletAddress) {
+  try {
+    const token = localStorage.getItem('token');
 
+    const resp = await fetch(`${process.env.NEXT_PUBLIC_AFIDA_BASE}/users/verify`, {
+      method: "POST",
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}`,
+      },
+      body: JSON.stringify({ walletAddress })
+    });
+
+    if (!resp.ok) {
+      throw new Error('Verification failed');
+    }
+
+    const data = await resp.json();
+    return data;
+  } catch (err) {
+    throw new Error(err.message || 'An error occurred during verification');
+  }
+}
 
 
 
@@ -72,14 +94,17 @@ const useAccountStore = create((set) => ({
   error: null,
   loading: false,
   setError: (error) => set({ error }),
+  setUser: (user) => set({ user }),
   login: async (email, password) => {
     set({ loading: true })
     try {
       const account = await handleLogin(email, password);
-      console.log(account.message)
-      if (!account.ok) {
+      console.log(account)
+      if (!account.token) {
         set({ user: null, loading: false, error: account.message })
       } else {
+        localStorage.setItem('token', account.token);
+        localStorage.setItem('address', account.address)
         set({ user: account, error: null });
       }
 
@@ -94,7 +119,8 @@ const useAccountStore = create((set) => ({
     set({ loading: true })
     try {
       const account = await handleRegister(fullName, email, password, address);
-      if (!account.ok) {
+      if (!account.token) {
+        localStorage.setItem('token', account.token);
         set({ user: null, error: null, error: account.message });
       } else {
         set({ user: account, error: null });
@@ -106,7 +132,29 @@ const useAccountStore = create((set) => ({
       set({ loading: false })
     }
   },
-  logout: () => set({ user: null, loading: false, error: null }),
+
+  verify: async (walletAddress) => {
+    set({ loading: true });
+    try {
+      const userData = await handleVerify(walletAddress);
+      if (!userData) {
+        set({ user: null, error: 'Verification failed', loading: false });
+      } else {
+        set({ user: userData, error: null, loading: false });
+        console.log('User verified:', userData);
+      }
+    } catch (error) {
+      set({ user: null, error: error.message, loading: false });
+      console.error('Verification failed:', error);
+    } finally {
+      set({ loading: false });
+    }
+  },
+  logout: () => {
+    localStorage.removeItem("address");
+    localStorage.removeItem("token");
+    set({ user: null, loading: false, error: null })
+  },
 }));
 
 
