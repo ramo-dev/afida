@@ -12,7 +12,7 @@ export default function CreateAccount() {
     password: ''
   });
 
-  const { register, loading, error } = useAccountStore();
+  const { user, register, loading, error } = useAccountStore();
 
   const { address } = useAccount();
   const { connectors, connect } = useConnect();
@@ -34,6 +34,10 @@ export default function CreateAccount() {
     }
   };
 
+
+  if (user) {
+    route.replace("/login");
+  }
   return (
     <div className="min-h-screen bg-black text-white">
       <div className="flex items-center justify-center py-12 md:px-0 px-4">

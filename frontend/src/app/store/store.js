@@ -99,7 +99,7 @@ const useAccountStore = create((set) => ({
     set({ loading: true })
     try {
       const account = await handleLogin(email, password);
-      console.log(account)
+      //console.log(account)
       if (!account.token) {
         set({ user: null, loading: false, error: account.message })
       } else {
@@ -141,7 +141,7 @@ const useAccountStore = create((set) => ({
         set({ user: null, loading: false });
       } else {
         set({ user: userData, error: null, loading: false });
-        console.log('User verified:', userData);
+        //console.log('User verified:', userData);
       }
     } catch (error) {
       set({ user: null, loading: false });
