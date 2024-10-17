@@ -138,13 +138,13 @@ const useAccountStore = create((set) => ({
     try {
       const userData = await handleVerify(walletAddress);
       if (!userData) {
-        set({ user: null, error: 'Verification failed', loading: false });
+        set({ user: null, loading: false });
       } else {
         set({ user: userData, error: null, loading: false });
         console.log('User verified:', userData);
       }
     } catch (error) {
-      set({ user: null, error: error.message, loading: false });
+      set({ user: null, loading: false });
       console.error('Verification failed:', error);
     } finally {
       set({ loading: false });
