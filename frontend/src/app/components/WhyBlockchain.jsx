@@ -1,7 +1,7 @@
 import Image from "next/image";
 import transparency from "../assets/images/transparency.jpeg";
 import lowFees from "../assets/images/low-fees.jpeg";
-import security from "../assets/images/security.jpeg";
+import security from "../assets/images/security.webp";
 import decentralization from "../assets/images/decentralization.jpeg";
 
 const ReasonSlide = ({ backgroundImage, title, description, peopleJoined }) => {
@@ -53,17 +53,18 @@ const WhyBlockchain = () => {
           peopleJoined="750+ Verified Donations"
         />
         <ReasonSlide
-          backgroundImage={lowFees}
-          title="Lower Transaction Fees"
-          description="Compared to traditional platforms, blockchain reduces fees drastically."
-          peopleJoined="500+ Projects Benefiting"
-        />
-        <ReasonSlide
           backgroundImage={security}
           title="Enhanced Security"
           description="Smart contracts ensure funds are handled securely, reducing fraud risks."
           peopleJoined="1200+ Campaigns Secured"
         />
+        <ReasonSlide
+          backgroundImage={lowFees}
+          title="Lower Transaction Fees"
+          description="Compared to traditional platforms, blockchain reduces fees drastically."
+          peopleJoined="500+ Projects Benefiting"
+        />
+
       </div>
 
     </section>
