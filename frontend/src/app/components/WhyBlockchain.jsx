@@ -1,8 +1,8 @@
 import Image from "next/image";
-import transparency from "../assets/images/transparency.jpg";
-import lowFees from "../assets/images/low-fees.jpg";
-import security from "../assets/images/security.jpg";
-import decentralization from "../assets/images/decentralization.jpg";
+import transparency from "../assets/images/transparency.jpeg";
+import lowFees from "../assets/images/low-fees.jpeg";
+import security from "../assets/images/security.jpeg";
+import decentralization from "../assets/images/decentralization.jpeg";
 
 const ReasonSlide = ({ backgroundImage, title, description, peopleJoined }) => {
   return (

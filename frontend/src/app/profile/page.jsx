@@ -16,7 +16,6 @@ const previousCampaigns = [
 ];
 
 export default function Profile() {
-  const walletAddress = '0x123...abc';
   const dicebearAvatar = `https://api.dicebear.com/9.x/identicon/svg?seed=Felix`;
 
   const { user, loading } = useAccountStore();

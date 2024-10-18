@@ -12,7 +12,7 @@ async function handleLogin(email, password) {
     })
 
     const data = await resp.json();
-    console.log(data);
+    //console.log(data);
     return data;
   } catch (err) {
     throw new Error(err.message || "An error occurred during Login");
@@ -31,7 +31,7 @@ async function handleRegister(fullName, email, password, walletAddress) {
     });
 
     const data = await resp.json();
-    console.log(data);
+    //console.log(data);
     return data;
   } catch (err) {
     throw new Error(err.message || "An error occurred during Registration");

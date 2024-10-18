@@ -7,10 +7,12 @@ import section2 from "./assets/images/section2.jpeg";
 import section3 from "./assets/images/section3.jpeg";
 import WhyBlockchain from "./components/WhyBlockchain";
 import Button from "./components/Button";
+import useAccountStore from "./store/store";
 
 
 const LandingPage = () => {
   const [openFAQ, setOpenFAQ] = useState(null);
+  const { user } = useAccountStore();
 
 
 
@@ -63,8 +65,8 @@ const LandingPage = () => {
             Effortless fundraising for your projects, whether it’s illness, NGO campaigns, or personal projects. We provide seamless solutions.
           </p>
           <div className="mt-6 flex items-center flex-row space-x-4">
-            <Button name="Join today" variant="secondary" href="/register" />
-            <Button name="View Campaigns" href="/campaigns" variant="primary" />
+            <Button name="Login" variant="secondary" href={user ? "/profile" : "/login"} />
+            <Button name="Get started" href={user ? "/campaigns" : "/register"} variant="primary" />
           </div>
         </div>
         <div className="w-full md:w-1/2 flex justify-center">
@@ -118,9 +120,13 @@ const LandingPage = () => {
       <section className="md:min-h-screen flex flex-col md:flex-row items-center px-6 sm:px-10 py-20">
         <div className="w-full md:w-1/2">
           <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold">Why Pay More for Less?</h1>
-          <p className="mt-4 text-base sm:text-lg">
-            We use Base_L2 to cut down transaction costs, so you keep more of your donations. Secure, fast, and transparent - because why should your money get lost in fees?
-          </p>
+
+          <p className="mt-4 text-base sm:text-lg"> Powered by cutting-edge blockchain technology, we reduce transaction costs so you can maximize your donations. Fast, secure, and fully transparent—no more losing money to hidden fees. </p>
+
+
+
+
+
           <div className="mt-6 space-x-4">
             <Button name="Get Started" variant="secondary" />
           </div>
