@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import Image from "next/image";
 import hero from "./assets/images/hero.jpeg"
 import section2 from "./assets/images/section2.jpeg";
@@ -65,8 +65,8 @@ const LandingPage = () => {
             Effortless fundraising for your projects, whether it’s illness, NGO campaigns, or personal projects. We provide seamless solutions.
           </p>
           <div className="mt-6 flex items-center flex-row space-x-4">
-            <Button name="Login" variant="secondary" href={user ? "/profile" : "/login"} />
-            <Button name="Get started" href={user ? "/campaigns" : "/register"} variant="primary" />
+            <Button name={user ? "Profile" : "Login"} variant="secondary" href={user ? "/profile" : "/login"} />
+            <Button name="View Campaigns" href="/campaigns" variant="primary" />
           </div>
         </div>
         <div className="w-full md:w-1/2 flex justify-center">
@@ -85,12 +85,12 @@ const LandingPage = () => {
           <p className="text-base sm:text-lg my-5">
             Start a campaign, receive funds through smart contracts, and track donations—all on blockchain.
           </p>
-          <Button name="Learn More" variant="secondary" />
+          <Button name="Learn More" variant="secondary" href="#learnmore" />
         </div>
       </section>
 
       {/* Step-by-Step Process */}
-      <section className="py-20 bg-black text-white px-3">
+      <section className="py-20 bg-black text-white px-3" id="learnmore">
         <div className="text-center mb-12">
           <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold">It’s as Simple as 1, 2, 3</h2>
         </div>
@@ -128,7 +128,7 @@ const LandingPage = () => {
 
 
           <div className="mt-6 space-x-4">
-            <Button name="Get Started" variant="secondary" />
+            <Button name={user ? "View campaigns" : "Get Started"} href={user ? "/campaigns" : "/register"} variant="secondary" />
           </div>
         </div>
         <div className="w-full md:w-1/2 flex justify-center md:block hidden">

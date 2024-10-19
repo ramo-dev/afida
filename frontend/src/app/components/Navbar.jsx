@@ -8,7 +8,7 @@ import useAccountStore from "../store/store";
 
 const Navbar = () => {
   const { verify, user, loading } = useAccountStore();
-  const [menuOpen, setMenuOpen] = useState(false); // State to control the burger menu
+  const [menuOpen, setMenuOpen] = useState(false);
 
   useEffect(() => {
     async function handleVerify() {
@@ -37,17 +37,17 @@ const Navbar = () => {
         </div>
 
         {/* Buttons for desktop */}
-        <div className="hidden md:flex space-x-4">
+        <div className="hidden md:flex space-x-4 items-center">
           {loading ? (
             <Loader2 className="animate-spin text-primary" />
           ) : !user ? (
             <>
-              <Button name="Login" variant="secondary" href="/login" />
-              <Button name="Get started" variant="primary" href="/register" />
+              <Button href="/register" variant="secondary" name="Start a fundraiser" />
+              <Button name="Login" variant="primary" href="/login" />
             </>
           ) : (
             <>
-              <Button name="Campaigns" variant="secondary" href="/campaigns" />
+              <Button href="/new-campaign" variant="secondary" name="Start a fundraiser" />
               <Button name="Profile" variant="primary" href="/profile" />
             </>
           )}
@@ -64,11 +64,13 @@ const Navbar = () => {
             <Loader2 className="animate-spin text-primary mx-auto" />
           ) : !user ? (
             <div className="flex space-x-2 mt-5">
+              <Button href="/register" variant="secondary" name="Start a fundraiser" />
               <Button name="Login" variant="secondary" href="/login" />
               <Button name="Get started" variant="primary" href="/register" />
             </div>
           ) : (
             <div className="flex space-x-2 mt-5">
+              <Button href="/register" variant="secondary" name="Start a fundraiser" />
               <Button name="Campaigns" variant="secondary" href="/campaigns" />
               <Button name="Profile" variant="primary" href="/profile" />
             </div>

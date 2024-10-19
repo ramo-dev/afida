@@ -1,11 +1,7 @@
 "use client";
 import { useState, useEffect } from "react";
-import { Bar } from "react-chartjs-2";
-import { Chart as ChartJS, CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend } from "chart.js";
 import { DownloadCloud, HandCoins, Search, Share2, UploadCloud } from "lucide-react";
 import useAccountStore from "@/app/store/store";
-
-ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend);
 
 export default function Dashboard({ params }) {
   const { campaign } = params;
@@ -15,9 +11,7 @@ export default function Dashboard({ params }) {
   const [transactions, setTransactions] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
 
-  // Assume this is your API call
   useEffect(() => {
-    //use this function to fetch the campaign based on campignId, or modify the parent page to point to campaign address
     const fetchCampaignData = async () => {
       try {
         const response = await fetch("https://afida-backend-c9432f18675a.herokuapp.com/api/project");
@@ -52,18 +46,6 @@ export default function Dashboard({ params }) {
   const raised = campaignData?.raised || 30000;
   const progress = (raised / goal) * 100;
 
-  const data = {
-    labels: campaignData?.graphData?.labels || [],
-    datasets: [
-      {
-        label: "Funding Progress (USD)",
-        data: campaignData?.graphData?.data || [],
-        backgroundColor: "#6D31ED",
-      },
-    ],
-  };
-
-  // Progress bar logic: End date - current date
   const endDate = new Date(campaignData?.endDate);
   const currentDate = new Date();
   const timeRemaining = Math.max(0, Math.ceil((endDate - currentDate) / (1000 * 60 * 60 * 24))); // Days left
@@ -79,39 +61,49 @@ export default function Dashboard({ params }) {
 
           {/* Metrics Section */}
           <div className="space-y-7 md:w-10/12 w-full mx-auto px-2 h-full">
-            {/* Progress Chart */}
-            <div>
-              <h3 className="text-xl font-semibold md:mb-4 mb-1 md:text-center text-neutral-300">Funding Progress</h3>
-              <Bar data={data} options={{ responsive: true, plugins: { legend: { display: false } } }} className="md:my-0 mb-8 md:border border-neutral-700 rounded-lg md:p-4 p-2" />
+            {/* Funding Info */}
+            <div className="mt-6 flex justify-between">
+              <p className="text-gray-400  md:text-md text-sm">
+                Goal:<br /> <span className="text-white">${goal}</span>
+              </p>
+              <p className="text-gray-400  md:text-md text-sm">
+                Raised:<br /> <span className="text-white">${raised}</span>
+              </p>
+              <p className="text-gray-400  md:text-md text-sm">
+                Days Left:<br /><span className="text-white">{timeRemaining} days</span>
+              </p>
+            </div>
 
-              {/* Funding Info */}
-              <div className="mt-6 flex justify-between">
-                <p className="text-gray-400  md:text-md text-sm">
-                  Goal:<br /> <span className="text-white">${goal}</span>
-                </p>
-                <p className="text-gray-400  md:text-md text-sm">
-                  Raised:<br /> <span className="text-white">${raised}</span>
-                </p>
-                <p className="text-gray-400  md:text-md text-sm">
-                  Days Left:<br /><span className="text-white">{timeRemaining} days</span>
-                </p>
+            {/* Progress Bar */}
+            <div className="mt-6 md:px-0 px-1">
+              <div className="w-full bg-neutral-700 rounded-full h-4">
+                <div className="bg-primary h-4 rounded-full" style={{ width: `${progress}%` }}></div>
               </div>
+              <p className="text-gray-400 mt-2 text-center">{progress.toFixed(2)}% of goal reached</p>
+            </div>
 
-              {/* Progress Bar */}
-              <div className="mt-6 md:px-0 px-1">
-                <div className="w-full bg-neutral-700 rounded-full h-4">
-                  <div className="bg-primary h-4 rounded-full" style={{ width: `${progress}%` }}></div>
-                </div>
-                <p className="text-gray-400 mt-2 text-center">{progress.toFixed(2)}% of goal reached</p>
-              </div>
-              <div className="flex space-x-4 mt-6 md:hidden block">
-                <button className="w-full py-2 bg-primary text-white rounded-full border-2 border-primary hover:bg-transparent hover:text-primary transition-colors flex items-center justify-center space-x-2">
-                  <Share2 size={18} />
-                  <span>Share</span>
-                </button>
-                <button className="w-full py-2 bg-primary text-white rounded-full border-2 border-primary hover:bg-transparent hover:text-primary transition-colors flex items-center justify-center space-x-2">
+            {/* Call to Action */}
+            <div className="space-y-4">
+              <p className="text-center text-lg font-semibold text-neutral-300">
+                Help us reach our goal! Every contribution matters.
+              </p>
+
+              {/* Action Buttons */}
+              <div className="flex space-x-4 justify-center">
+                <button className="w-1/2 py-2 bg-primary text-white rounded-full border-2 border-primary hover:bg-transparent hover:text-primary transition-colors flex items-center justify-center space-x-2">
                   <HandCoins size={18} />
-                  <span>Contribute</span>
+                  <span>Contribute Now</span>
+                </button>
+                <button className="w-1/2 py-2 bg-primary text-white rounded-full border-2 border-primary hover:bg-transparent hover:text-primary transition-colors flex items-center justify-center space-x-2">
+                  <Share2 size={18} />
+                  <span>Share Campaign</span>
+                </button>
+              </div>
+
+              <div className="text-center mt-4 flex-1">
+                <button className="w-full py-2 px-4 bg-primary text-white rounded-full border-2 border-primary hover:bg-transparent hover:text-primary transition-colors flex items-center justify-center space-x-2">
+                  <UploadCloud size={18} />
+                  <span>Download Campaign Assets</span>
                 </button>
               </div>
             </div>
@@ -134,7 +126,7 @@ export default function Dashboard({ params }) {
             />
             <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" size={20} />
           </div>
-          {/* Transaction List */}
+
           <ul className="space-y-2 text-gray-300 max-h-[300px] overflow-y-auto">
             {filteredTransactions.map((transaction) => (
               <li key={transaction.id} className="bg-neutral-700 p-3 rounded-md">
@@ -149,18 +141,6 @@ export default function Dashboard({ params }) {
               <p className="text-center text-gray-400">No transactions found</p>
             )}
           </ul>
-        </div>
-
-        {/* Action Buttons */}
-        <div className="space-x-4 mt-6 md:flex hidden">
-          <button className="w-full py-2 bg-primary text-white rounded-full border-2 border-primary hover:bg-transparent hover:text-primary transition-colors flex items-center justify-center space-x-2">
-            <Share2 size={18} />
-            <span>Share</span>
-          </button>
-          <button className="w-full py-2 bg-primary text-white rounded-full border-2 border-primary hover:bg-transparent hover:text-primary transition-colors flex items-center justify-center space-x-2">
-            <HandCoins size={18} />
-            <span>Contribute</span>
-          </button>
         </div>
       </div>
     </div>
