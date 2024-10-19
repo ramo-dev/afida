@@ -56,9 +56,10 @@ const LandingPage = () => {
       {/* Hero Section */}
       <section className="min-h-full flex flex-col-reverse md:flex-row items-center px-6 sm:px-10 py-12 md:py-0">
         <div className="w-full md:w-1/2 space-y-6">
-          <h1 className="text-5xl lg:text-7xl font-bold">Crowdfunding Made Easy</h1>
+          <h1 className="text-5xl lg:text-7xl font-bold">Afida: Crowdfunding Made Easy</h1>
           <p className="mt-4 text-base sm:text-lg">
-            Effortless fundraising for your projects, whether it’s illness, NGO campaigns, or personal projects. We provide seamless solutions.
+          Afida is a next-generation decentralized crowdfunding platform that empowers creators, innovators, and community projects by leveraging blockchain technology. 
+          Whether you're raising funds for a startup, a non-profit initiative, or a personal cause, Afida offers a seamless and transparent way to engage with your supporters.
           </p>
           <div className="mt-6 flex items-center flex-row space-x-4">
             <Button name="Join today" variant="secondary" href="/register" />
@@ -117,7 +118,9 @@ const LandingPage = () => {
         <div className="w-full md:w-1/2">
           <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold">Why Pay More for Less?</h1>
           <p className="mt-4 text-base sm:text-lg">
-            We use Base_L2 to cut down transaction costs, so you keep more of your donations. Secure, fast, and transparent - because why should your money get lost in fees?
+          Whether you're a creator looking to fund your next big idea or a supporter eager to back meaningful projects, Afida is the perfect platform for you. By harnessing the power of blockchain, we’re building a fairer, more transparent crowdfunding ecosystem that puts control back into the hands of creators and contributors alike.
+
+Start your campaign or explore existing projects on Afida and become a part of the future of decentralized crowdfunding!
           </p>
           <div className="mt-6 space-x-4">
             <Button name="Get Started" variant="secondary" />

@@ -6,13 +6,16 @@ import decentralization from "../assets/images/decentralization.jpg";
 
 const ReasonSlide = ({ backgroundImage, title, description, peopleJoined }) => {
   return (
+    
     <div>
+      
       <div
         className="z-0 brightness-75 transition hover:brightness-100 rounded-lg flex-none w-[300px] h-full lg:w-[400px] lg:h-[300px] min-w-[300px] bg-cover bg-no-repeat rounded-r-5xl 2xl:rounded-5xl scroll-container" // Set a specific width for scrolling
 
         style={{ backgroundImage: `url(${backgroundImage.src})` }}
       >
       </div>
+      
       <div className="flex h-full flex-col items-start justify-between py-5">
         <div className="flexCenter gap-4">
 
@@ -42,20 +45,20 @@ const WhyBlockchain = () => {
         {/* Example slides showcasing blockchain benefits */}
         <ReasonSlide
           backgroundImage={decentralization}
-          title="Decentralization"
-          description="No single point of control. Backers and creators interact directly on the platform."
+          title="Immutable Records"
+          description="Every contribution and campaign update is permanently stored on the blockchain, providing a trusted, tamper-proof record. This gives backers confidence that funds are being used responsibly and allows creators to maintain credibility."
           peopleJoined="1000+ Users"
         />
         <ReasonSlide
           backgroundImage={transparency}
-          title="Transparency"
-          description="All transactions and funding progress are publicly verifiable on the blockchain."
+          title="Empoweriing Innovations"
+          description="We believe in the power of community-driven innovation. Afida supports projects that aim to make a positive impact on society by connecting creators with backers who share their vision for the future. From tech solutions to social initiatives, Afida is the platform to bring your ideas to life.."
           peopleJoined="750+ Verified Donations"
         />
         <ReasonSlide
           backgroundImage={lowFees}
           title="Lower Transaction Fees"
-          description="Compared to traditional platforms, blockchain reduces fees drastically."
+          description="Afida minimizes costs by using blockchain technology to handle transactions, ensuring that more of the money you raise goes directly to your cause."
           peopleJoined="500+ Projects Benefiting"
         />
         <ReasonSlide
