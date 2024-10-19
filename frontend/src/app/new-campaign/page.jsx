@@ -3,11 +3,18 @@ import Link from 'next/link';
 import useAccountStore from '../store/store';
 import Button from '../components/Button';
 import { useAccount } from 'wagmi';
+import Loading from '../loading';
 
 
 export default function CreateAccount() {
-  const { user } = useAccountStore();
+  const { user, loading } = useAccountStore();
   const { address } = useAccount();
+
+  if (!address && loading) {
+    return <Loading />
+  }
+
+
   return (
     <div className="min-h-screen bg-black text-white">
       {/* Main Content */}
@@ -70,7 +77,7 @@ export default function CreateAccount() {
                 className="mb-4 w-full p-3 rounded-md bg-transparent text-gray-300 ring-2 ring-neutral-800 focus:outline-none focus:ring-2 focus:ring-primary"
               />
             </div>
-            <Button name="continue" href="/" variant="primary" type="submit" />
+            <Button name="continue" href="/" variant="primary" type="submit" className="w-full mt-3" />
           </form>
 
         </div>

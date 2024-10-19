@@ -4,23 +4,27 @@ import Link from 'next/link';
 import { useEffect } from 'react';
 import { useAccount, useConnect, useDisconnect } from 'wagmi'
 import Button from '../components/Button';
+import { useRouter } from 'next/navigation';
+import Loading from '../loading';
 
 export default function CreateAccount() {
 
   const account = useAccount()
   const { connectors, connect, status, error } = useConnect()
-  const { disconnect } = useDisconnect()
+  const { disconnect } = useDisconnect();
+  const router = useRouter();
 
 
   useEffect(() => {
     if (account.status === "connected") {
-      console.log(account.status)
-      console.log(JSON.stringify(account.addresses))
-      console.log(account.chainId)
-    } else {
-      console.log("Wallet not connected")
+      setTimeout(() => {
+        router.back();
+      }, 2000);
+      <Loading />
     }
-  }, [account])
+  }, [])
+
+
 
 
 

@@ -1,6 +1,8 @@
 import { create } from "zustand";
+import Campaigns from "../campaigns/page";
 
 
+//Handle login
 async function handleLogin(email, password) {
   try {
     const resp = await fetch(`${process.env.NEXT_PUBLIC_AFIDA_BASE}/users/login`, {
@@ -19,7 +21,7 @@ async function handleLogin(email, password) {
   }
 }
 
-
+//Handle creating a user
 async function handleRegister(fullName, email, password, walletAddress) {
   try {
     const resp = await fetch(`${process.env.NEXT_PUBLIC_AFIDA_BASE}/users/register`, {
@@ -38,7 +40,7 @@ async function handleRegister(fullName, email, password, walletAddress) {
   }
 }
 
-
+//Handle update wallet Address
 async function handleAddWallet(walletAddress) {
   try {
     const resp = await fetch("url", {
@@ -58,7 +60,7 @@ async function handleAddWallet(walletAddress) {
   }
 }
 
-
+//Handle verify current logged in user
 async function handleVerify(walletAddress) {
   try {
     const token = localStorage.getItem('token');
@@ -85,10 +87,7 @@ async function handleVerify(walletAddress) {
 
 
 
-
-
-
-
+//Auth store
 const useAccountStore = create((set) => ({
   user: null,
   error: null,

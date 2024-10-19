@@ -73,6 +73,35 @@ async function handleAddWallet(walletAddress) {
 
 
 
+//current user campaign store
+const useCampaignStore = create((set) => ({
+  campaigns: [],
+  error: null,
+  loading: false,
+  //can only add 1 campaign
+  addCampaign: async (newCampaign) => {
+    set({ loading: true });
+
+    set((state) => {
+      if (state.campaigns.length > 0) {
+        return { error: "You have a pending campaign", loading: false };
+      } else {
+        return { campaigns: [newCampaign], error: null, loading: false };
+      }
+    });
+  },
+
+  // Remove a campaign by ID
+  removeCampaign: (campaignId) => {
+    set({ loading: true })
+    set((state) => ({
+      campaigns: state.campaigns.filter(itm => itm._id !== campaignId),
+      error: state.campaigns.length > 0 ? null : "You have no campaigns",
+      loading: false
+    }))
+  }
+}));
 
 
 
+export default useCampaignStore;

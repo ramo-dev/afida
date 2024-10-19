@@ -161,7 +161,7 @@ const LandingPage = () => {
                 onClick={() => toggleFAQ(index)}
               >
                 <h3 className="text-lg font-bold">{faq.question}</h3>
-                <span className="text-primary text-2xl rounded-full px-[0.6rem] border-2 border-primary">
+                <span className="text-primary text-2xl rounded-full px-[0.6rem] border-2 border-primary flex justify-center items-center">
                   {openFAQ === index ? '-' : '+'}
                 </span>
               </div>

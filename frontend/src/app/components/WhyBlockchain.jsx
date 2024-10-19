@@ -7,12 +7,21 @@ import decentralization from "../assets/images/decentralization.jpeg";
 const ReasonSlide = ({ backgroundImage, title, description, peopleJoined }) => {
   return (
     <div>
+
       <div
         className="z-0 brightness-75 transition hover:brightness-100 rounded-lg flex-none w-[300px] h-full lg:w-[400px] lg:h-[300px] min-w-[300px] bg-cover bg-no-repeat rounded-r-5xl 2xl:rounded-5xl scroll-container" // Set a specific width for scrolling
 
         style={{ backgroundImage: `url(${backgroundImage.src})` }}
       >
       </div>
+      <div className="flexCenter gap-6 mt-5">
+        <span className="flex -space-x-4 overflow-hidden">
+
+          {/* You can add more images if necessary */}
+        </span>
+        <p className="font-bold text-xl text-primary">{peopleJoined}</p>
+      </div>
+
       <div className="flex h-full flex-col items-start justify-between py-5">
         <div className="flexCenter gap-4">
 
@@ -22,13 +31,6 @@ const ReasonSlide = ({ backgroundImage, title, description, peopleJoined }) => {
           </div>
         </div>
 
-        <div className="flexCenter gap-6">
-          <span className="flex -space-x-4 overflow-hidden">
-
-            {/* You can add more images if necessary */}
-          </span>
-          <p className="bold-16 md:bold-20 text-white">{peopleJoined}</p>
-        </div>
       </div>
 
     </div>
@@ -42,15 +44,21 @@ const WhyBlockchain = () => {
         {/* Example slides showcasing blockchain benefits */}
         <ReasonSlide
           backgroundImage={decentralization}
-          title="Decentralization"
-          description="No single point of control. Backers and creators interact directly on the platform."
+          title="Immutable Records"
+          description="Every contribution and campaign update is permanently stored on the blockchain, providing a trusted, tamper-proof record. This gives backers confidence that funds are being used responsibly."
           peopleJoined="1000+ Users"
         />
         <ReasonSlide
           backgroundImage={transparency}
-          title="Transparency"
-          description="All transactions and funding progress are publicly verifiable on the blockchain."
+          title="Empoweriing Innovations"
+          description="Afida connects creators with backers to drive community innovation, supporting impactful projects from tech to social initiatives, turning ideas into reality."
           peopleJoined="750+ Verified Donations"
+        />
+        <ReasonSlide
+          backgroundImage={lowFees}
+          title="Lower Transaction Fees"
+          description="Afida minimizes costs by using blockchain technology to handle transactions, ensuring that more of the money you raise goes directly to your cause."
+          peopleJoined="500+ Projects Benefiting"
         />
         <ReasonSlide
           backgroundImage={security}
@@ -58,13 +66,6 @@ const WhyBlockchain = () => {
           description="Smart contracts ensure funds are handled securely, reducing fraud risks."
           peopleJoined="1200+ Campaigns Secured"
         />
-        <ReasonSlide
-          backgroundImage={lowFees}
-          title="Lower Transaction Fees"
-          description="Compared to traditional platforms, blockchain reduces fees drastically."
-          peopleJoined="500+ Projects Benefiting"
-        />
-
       </div>
 
     </section>
