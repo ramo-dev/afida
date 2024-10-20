@@ -1,11 +1,13 @@
 "use client";
 import { useState } from 'react';
+import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import useAccountStore from '../store/store';
 import Button from '../components/Button';
 import { useAccount, useConnect, useDisconnect } from 'wagmi';
 
 export default function CreateAccount() {
+  const route = useRouter();
   const [form, setForm] = useState({
     fullName: '',
     email: '',
@@ -111,7 +113,7 @@ export default function CreateAccount() {
 
             {/* Terms and Conditions */}
             <div className="flex items-center mb-6 w-full md:text-sm text-xs text-nowrap">
-              <input type="checkbox" id="terms" className="mr-2" required />
+              <input type="checkbox" id="terms" className="mr-2 w-5 h-5" required />
               <label htmlFor="terms" className="text-gray-400 flex gap-1">
                 By checking, you agree to the
                 <Link href="/terms">

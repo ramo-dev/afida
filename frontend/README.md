@@ -9,6 +9,14 @@ Afida is a decentralized crowdfunding platform built on Base L2, empowering user
 - **Next.js:** Frontend framework for building performant and SEO-friendly web applications.
 - **Tailwind CSS:** A utility-first CSS framework for rapidly building custom designs.
 
+## Prerequisites
+
+Docker running server and exposed port 8080
+.env file
+```
+NEXT_PUBLIC_AFIDA_BASE=http://127.0.0.1:8080/api
+```
+
 ## Installation
 
 1. **Clone the repository:**

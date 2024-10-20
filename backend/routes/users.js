@@ -19,6 +19,39 @@ const loginSchema = Joi.object({
   password: Joi.string().min(6).required()
 });
 
+// Test Routes
+router.get('/gettest', (req, res) => {
+  res.json({ message: 'Fuck Society!!' });
+});
+
+router.post('/posttest', async (req, res) => {
+  const { error } = registerSchema.validate(req.body);
+  if (error) return res.status(400).json({ message: error.details[0].message });
+
+  const { name, email, password, smartWalletAddress } = req.body;
+  try {
+    let user = await User.findOne({ email });
+    if (user) return res.status(400).json({ message: 'User already exists' });
+
+    user = new User({
+      name,
+      email,
+      password,
+      smartWalletAddress
+    });
+
+    const salt = await bcrypt.genSalt(10);
+    user.password = await bcrypt.hash(password, salt);
+    await user.save();
+
+    const token = jwt.sign({ id: user._id }, process.env.TOKEN_SECRET, { expiresIn: '1h' });
+    res.header('Authorization', token).json({ token });
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send('Server Error');
+  }
+});
+
 // Register Route
 router.post('/register', async (req, res) => {
   const { error } = registerSchema.validate(req.body);
