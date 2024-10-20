@@ -26,12 +26,12 @@ export default function Campaign({key, campaign}){
             <div className="bg-neutral-800 p-5 rounded-lg hover:bg-neutral-700 transition-colors">
                 <h3 className="text-xl font-semibold my-2">{campaign.name}</h3>
                 <p className="text-gray-400 my-2">Goal: ${campaign.goal}</p>
-                <p className="text-gray-400 my-2">Raised: ${formatEther(data.amount)}</p>
+                <p className="text-gray-400 my-2">Raised: ${formatEther(data[2])}</p>
                 <p className="text-gray-400 my-2">End Date: {campaign.date}</p>
                 <div className="mt-2 w-full my-2 bg-neutral-700 rounded-full h-3">
                 <div
                     className="bg-primary h-3 rounded-full"
-                    style={{ width: `${(formatEther(data.amount) / campaign.goal) * 100}%` }}
+                    style={{ width: `${(formatEther(data[2]) / campaign.goal) * 100}%` }}
                 ></div>
                 </div>
             </div>
