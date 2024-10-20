@@ -10,6 +10,7 @@ import {afridaAddress, AfridaABI} from '../abis/Afrida.json';
 import Loading from '../loading';
 import { postData } from '../lib/data';
 import { popupE } from '../lib/trigger';
+import { parseEther } from 'ethers';
 
 export default function CreateCampaign() {
   let route = useRouter();
@@ -33,18 +34,18 @@ export default function CreateCampaign() {
     e.preventDefault();
     postData((response)=>{
       if(response.id){
-        if(status=='connected'){
-          writeContract({ 
-              abi:AfridaABI,
-              address: afridaAddress,
-              functionName: 'createDonation',
-              value:parseEther('0.000000000005'),
-              args: [
-                  response.id,
-                  parseEther(goal)
-              ],
-          })
-      }
+        alert('Campaign did successfully')
+        if(status=='connected')
+        writeContract({ 
+            abi:AfridaABI,
+            address: afridaAddress,
+            functionName: 'createDonation',
+            value:parseEther('0.000000000005'),
+            args: [
+                response.id,
+                parseEther(goal)
+            ],
+        })
       }
     },{
       wallet:address,

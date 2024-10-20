@@ -54,9 +54,9 @@ export default function Dashboard({ params }) {
     <div className="min-h-screen bg-black text-white flex flex-col lg:flex-row">
       {/* Main Content */}
       <div className="flex-1 flex items-center justify-center">
-        <div className="bg-black text-white rounded-lg w-full md:max-w-[700px] w-full md:py-0 py-8">
+        <div className="bg-black text-white rounded-lg w-full md:max-w-[700px] md:py-0 py-8">
           {/* Greeting */}
-          <h1 className="md:text-[40px] text-3xl font-bold mb-2 text-center">{campaign} Campaign</h1>
+          <h1 className="md:text-[40px] text-3xl font-bold mb-2 text-center">{campaign.name} Campaign</h1>
           <p className="text-center text-gray-400 mb-6">Support the {campaignData?.title} campaign progress</p>
 
           {/* Metrics Section */}

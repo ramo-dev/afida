@@ -20,7 +20,9 @@ router.post('/', async (req, res) => {
   const { wallet, name, description, goal, date, category } = req.body;
 
   //create an id from hash of all the fields
-  const id = crypto.createHash('md5 ').update(wallet + name + description + goal + date + category ).digest('hex');
+  const hasher = crypto.createHash('sha256');
+  hasher.update(wallet+name);
+  let id = hasher.digest('hex');
 
   try {
     const newContribution = new Contribution({
@@ -34,7 +36,7 @@ router.post('/', async (req, res) => {
     });
 
     const contribution = await newContribution.save();
-    res.status(200).json({contribution:contribution.id,message:'Contribution added successfully'});
+    res.status(200).json({id:contribution.id,message:'Contribution added successfully'});
   } catch (err) {
     console.error(err.message);
     res.status(500).send('Server Error');
