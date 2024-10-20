@@ -18,17 +18,24 @@ export default function CreateAccount() {
     setForm({ ...form, [name]: value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     const { email, password } = form;
 
-    // Fixed validation: Ensure trim() is called as a function
     if (email.trim() === "" || password.trim() === "") {
-      return; // You might want to show a message here
+      return; 
+    }
+
+    const response = await login(email, password); 
+
+    if (response.success) {
+      localStorage.setItem('userToken', response.token); // Save token once returned by the API
+      route.replace("/campaigns"); 
     } else {
-      login(email, password);
+      console.error(response.error); 
     }
   };
+
 
   if (user) {
     route.replace("/campaigns");
