@@ -1,0 +1,461 @@
+{
+    "afridaAddress":"0xFA2820c088BDb83F6F0E8c9AD26980c21e5e7992",
+    "AfridaABI":[
+        {
+            "anonymous": false,
+            "inputs": [
+                {
+                    "indexed": false,
+                    "internalType": "address",
+                    "name": "by",
+                    "type": "address"
+                }
+            ],
+            "name": "DonationCreated",
+            "type": "event"
+        },
+        {
+            "anonymous": false,
+            "inputs": [
+                {
+                    "indexed": false,
+                    "internalType": "uint256",
+                    "name": "amount",
+                    "type": "uint256"
+                },
+                {
+                    "indexed": false,
+                    "internalType": "address",
+                    "name": "from",
+                    "type": "address"
+                }
+            ],
+            "name": "DonationRecieved",
+            "type": "event"
+        },
+        {
+            "inputs": [
+                {
+                    "internalType": "address",
+                    "name": "newOwner",
+                    "type": "address"
+                }
+            ],
+            "name": "changeOwner",
+            "outputs": [],
+            "stateMutability": "nonpayable",
+            "type": "function"
+        },
+        {
+            "inputs": [
+                {
+                    "internalType": "string",
+                    "name": "id",
+                    "type": "string"
+                },
+                {
+                    "internalType": "uint256",
+                    "name": "target",
+                    "type": "uint256"
+                }
+            ],
+            "name": "createDonation",
+            "outputs": [],
+            "stateMutability": "payable",
+            "type": "function"
+        },
+        {
+            "inputs": [
+                {
+                    "internalType": "address",
+                    "name": "voter",
+                    "type": "address"
+                },
+                {
+                    "internalType": "string",
+                    "name": "donation",
+                    "type": "string"
+                }
+            ],
+            "name": "delegateTo",
+            "outputs": [],
+            "stateMutability": "nonpayable",
+            "type": "function"
+        },
+        {
+            "inputs": [
+                {
+                    "internalType": "string",
+                    "name": "donee",
+                    "type": "string"
+                }
+            ],
+            "name": "donate",
+            "outputs": [],
+            "stateMutability": "payable",
+            "type": "function"
+        },
+        {
+            "inputs": [
+                {
+                    "internalType": "address payable",
+                    "name": "voter",
+                    "type": "address"
+                },
+                {
+                    "internalType": "string",
+                    "name": "donation",
+                    "type": "string"
+                }
+            ],
+            "name": "refund",
+            "outputs": [],
+            "stateMutability": "nonpayable",
+            "type": "function"
+        },
+        {
+            "inputs": [
+                {
+                    "internalType": "string",
+                    "name": "donation",
+                    "type": "string"
+                }
+            ],
+            "name": "release",
+            "outputs": [],
+            "stateMutability": "nonpayable",
+            "type": "function"
+        },
+        {
+            "inputs": [
+                {
+                    "internalType": "uint8",
+                    "name": "newCommision",
+                    "type": "uint8"
+                }
+            ],
+            "name": "setCommision",
+            "outputs": [],
+            "stateMutability": "nonpayable",
+            "type": "function"
+        },
+        {
+            "inputs": [
+                {
+                    "internalType": "int8",
+                    "name": "newQuorum",
+                    "type": "int8"
+                }
+            ],
+            "name": "setQuorum",
+            "outputs": [],
+            "stateMutability": "nonpayable",
+            "type": "function"
+        },
+        {
+            "inputs": [
+                {
+                    "internalType": "string",
+                    "name": "id",
+                    "type": "string"
+                },
+                {
+                    "internalType": "address payable",
+                    "name": "withdrawal",
+                    "type": "address"
+                }
+            ],
+            "name": "setWithdrawal",
+            "outputs": [],
+            "stateMutability": "nonpayable",
+            "type": "function"
+        },
+        {
+            "inputs": [],
+            "stateMutability": "nonpayable",
+            "type": "constructor"
+        },
+        {
+            "inputs": [
+                {
+                    "internalType": "string",
+                    "name": "donation",
+                    "type": "string"
+                },
+                {
+                    "internalType": "bool",
+                    "name": "choice",
+                    "type": "bool"
+                }
+            ],
+            "name": "voteFor",
+            "outputs": [],
+            "stateMutability": "nonpayable",
+            "type": "function"
+        },
+        {
+            "inputs": [],
+            "name": "admin",
+            "outputs": [
+                {
+                    "internalType": "address",
+                    "name": "",
+                    "type": "address"
+                }
+            ],
+            "stateMutability": "view",
+            "type": "function"
+        },
+        {
+            "inputs": [
+                {
+                    "internalType": "uint256",
+                    "name": "",
+                    "type": "uint256"
+                }
+            ],
+            "name": "donationIDs",
+            "outputs": [
+                {
+                    "internalType": "string",
+                    "name": "",
+                    "type": "string"
+                }
+            ],
+            "stateMutability": "view",
+            "type": "function"
+        },
+        {
+            "inputs": [
+                {
+                    "internalType": "string",
+                    "name": "",
+                    "type": "string"
+                }
+            ],
+            "name": "donations",
+            "outputs": [
+                {
+                    "internalType": "address",
+                    "name": "donee",
+                    "type": "address"
+                },
+                {
+                    "internalType": "address payable",
+                    "name": "withdrawal",
+                    "type": "address"
+                },
+                {
+                    "internalType": "uint256",
+                    "name": "target",
+                    "type": "uint256"
+                },
+                {
+                    "internalType": "uint256",
+                    "name": "amount",
+                    "type": "uint256"
+                },
+                {
+                    "internalType": "uint8",
+                    "name": "step",
+                    "type": "uint8"
+                },
+                {
+                    "internalType": "int8",
+                    "name": "doners",
+                    "type": "int8"
+                },
+                {
+                    "internalType": "int8",
+                    "name": "vote",
+                    "type": "int8"
+                }
+            ],
+            "stateMutability": "view",
+            "type": "function"
+        },
+        {
+            "inputs": [],
+            "name": "getAllDonations",
+            "outputs": [
+                {
+                    "components": [
+                        {
+                            "internalType": "address",
+                            "name": "withdrawal",
+                            "type": "address"
+                        },
+                        {
+                            "internalType": "uint256",
+                            "name": "target",
+                            "type": "uint256"
+                        },
+                        {
+                            "internalType": "uint256",
+                            "name": "amount",
+                            "type": "uint256"
+                        },
+                        {
+                            "internalType": "uint256[]",
+                            "name": "steps",
+                            "type": "uint256[]"
+                        },
+                        {
+                            "internalType": "uint8",
+                            "name": "step",
+                            "type": "uint8"
+                        },
+                        {
+                            "internalType": "int8",
+                            "name": "doners",
+                            "type": "int8"
+                        },
+                        {
+                            "internalType": "int8",
+                            "name": "vote",
+                            "type": "int8"
+                        }
+                    ],
+                    "internalType": "struct Afrida.DonationSummary[]",
+                    "name": "",
+                    "type": "tuple[]"
+                }
+            ],
+            "stateMutability": "view",
+            "type": "function"
+        },
+        {
+            "inputs": [],
+            "name": "getCommision",
+            "outputs": [
+                {
+                    "internalType": "uint8",
+                    "name": "",
+                    "type": "uint8"
+                }
+            ],
+            "stateMutability": "view",
+            "type": "function"
+        },
+        {
+            "inputs": [
+                {
+                    "internalType": "string",
+                    "name": "id",
+                    "type": "string"
+                }
+            ],
+            "name": "getDonation",
+            "outputs": [
+                {
+                    "internalType": "address",
+                    "name": "withdrawal",
+                    "type": "address"
+                },
+                {
+                    "internalType": "uint256",
+                    "name": "target",
+                    "type": "uint256"
+                },
+                {
+                    "internalType": "uint256",
+                    "name": "amount",
+                    "type": "uint256"
+                },
+                {
+                    "internalType": "uint256[]",
+                    "name": "steps",
+                    "type": "uint256[]"
+                },
+                {
+                    "internalType": "uint8",
+                    "name": "step",
+                    "type": "uint8"
+                },
+                {
+                    "internalType": "int8",
+                    "name": "doners",
+                    "type": "int8"
+                },
+                {
+                    "internalType": "int256",
+                    "name": "vote",
+                    "type": "int256"
+                }
+            ],
+            "stateMutability": "view",
+            "type": "function"
+        },
+        {
+            "inputs": [
+                {
+                    "internalType": "string",
+                    "name": "donation",
+                    "type": "string"
+                }
+            ],
+            "name": "getMyDonation",
+            "outputs": [
+                {
+                    "internalType": "int8",
+                    "name": "weight",
+                    "type": "int8"
+                },
+                {
+                    "internalType": "uint256",
+                    "name": "amount",
+                    "type": "uint256"
+                },
+                {
+                    "internalType": "bool",
+                    "name": "voted",
+                    "type": "bool"
+                },
+                {
+                    "internalType": "address",
+                    "name": "delegate",
+                    "type": "address"
+                },
+                {
+                    "internalType": "uint8",
+                    "name": "step",
+                    "type": "uint8"
+                }
+            ],
+            "stateMutability": "view",
+            "type": "function"
+        },
+        {
+            "inputs": [],
+            "name": "getQuorum",
+            "outputs": [
+                {
+                    "internalType": "int8",
+                    "name": "",
+                    "type": "int8"
+                }
+            ],
+            "stateMutability": "view",
+            "type": "function"
+        },
+        {
+            "inputs": [
+                {
+                    "internalType": "string",
+                    "name": "donation",
+                    "type": "string"
+                }
+            ],
+            "name": "getVotes",
+            "outputs": [
+                {
+                    "internalType": "int8",
+                    "name": "",
+                    "type": "int8"
+                }
+            ],
+            "stateMutability": "view",
+            "type": "function"
+        }
+    ]
+}

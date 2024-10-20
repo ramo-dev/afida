@@ -6,6 +6,7 @@ import { config } from '@/app/lib/wagmi'
 import "./assets/styles/globals.css";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
+import Popup from "./components/Popup";
 
 
 
@@ -28,7 +29,7 @@ export default function RootLayout({ children }) {
           {children}
           <Footer />
         </Providers>
-
+        <Popup />
       </body>
     </html>
   );
