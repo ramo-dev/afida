@@ -1,3 +1,5 @@
+import {  addDynamicIconSelectors } from "@iconify/tailwind"
+
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: [
@@ -11,8 +13,13 @@ module.exports = {
         primary: "var(--primary)",
         background: "var(--background)",
         foreground: "var(--foreground)",
+        Success: 'rgba(34, 220, 142, 1)',
+        Warning: 'rgba(220, 156, 34, 1)',
+        Error: 'rgba(220, 34, 34, 1)',
       },
     },
   },
-  plugins: [],
+  plugins: [
+    addDynamicIconSelectors(),
+  ],
 };

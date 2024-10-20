@@ -1,14 +1,60 @@
 "use client"
-import Link from 'next/link';
+
+import { useState } from 'react';
+import { useRouter } from 'next/navigation';
 import useAccountStore from '../store/store';
 import Button from '../components/Button';
-import { useAccount } from 'wagmi';
+import { useAccount, useWriteContract } from 'wagmi';
+import { config } from '../lib/wagmi';
+import {afridaAddress, AfridaABI} from '../abis/Afrida.json';
 import Loading from '../loading';
+import { postData } from '../lib/data';
+import { popupE } from '../lib/trigger';
 
-
-export default function CreateAccount() {
+export default function CreateCampaign() {
+  let route = useRouter();
   const { user, loading } = useAccountStore();
-  const { address } = useAccount();
+  const { address, status } = useAccount();
+  const { writeContract, data:txHash, status:writeStatus, error:writeError, isPending:writePending } = useWriteContract({config,mutation:{
+      onSuccess:()=>{
+        route.replace('/profile')
+      }
+  }})
+  if(writePending) popupE('Processing', 'Accept transaction in wallet')
+  if(writeError) popupE('Error',writeError.message)
+
+  let [name, setName] = useState('');
+  let [category, setCategory] = useState('');
+  let [description, setDescription] = useState('');
+  let [goal, setGoal] = useState();
+  let [endDate, setEndDate] = useState('');
+
+  let submit = (e) => {
+    e.preventDefault();
+    postData((response)=>{
+      if(response.id){
+        if(status=='connected'){
+          writeContract({ 
+              abi:AfridaABI,
+              address: afridaAddress,
+              functionName: 'createDonation',
+              value:parseEther('0.000000000005'),
+              args: [
+                  response.id,
+                  parseEther(goal)
+              ],
+          })
+      }
+      }
+    },{
+      wallet:address,
+      name,
+      category,
+      description,
+      goal:parseFloat(goal),
+      date:endDate
+    },'/contributions')
+  }
 
   if (!address && loading) {
     return <Loading />
@@ -25,7 +71,7 @@ export default function CreateAccount() {
 
 
           <form className="space-y-7 w-8/12 mx-auto">
-            {/* Full Names */}
+            {/* Campaign Name */}
             <div className="mb-4">
               <label htmlFor='CampaignName' className='font-bold my-2'>Campaign name:</label>
               <input
@@ -33,10 +79,12 @@ export default function CreateAccount() {
                 type="text"
                 placeholder="Eg. Tusome Initiative"
                 className="w-full p-3 rounded-md bg-transparent ring-2 ring-neutral-800 text-gray-300 focus:outline-none focus:ring-2 focus:ring-primary"
+                value={name}
+                onChange={e=>setName(e.target.value)}
               />
             </div>
 
-            {/* Username or Email */}
+            {/*Category */}
             <div className="mb-4">
               <label htmlFor='CampaignCategory'
                 className='font-bold my-2'>Campaign Category:</label>
@@ -44,10 +92,12 @@ export default function CreateAccount() {
                 type="text"
                 placeholder="Eg. Education"
                 className="w-full p-3 rounded-md bg-transparent ring-2 ring-neutral-800 text-gray-300 focus:outline-none focus:ring-2 focus:ring-primary"
+                value={category}
+                onChange={e=>setCategory(e.target.value)}
               />
             </div>
 
-            {/* Password */}
+            {/* Description */}
             <div className="mb-4">
               <label htmlFor='CampaignDescription' className='font-bold my-2'>Campaign description:</label>
 
@@ -55,6 +105,8 @@ export default function CreateAccount() {
                 type="text"
                 placeholder="Eg. Contribution to build classes"
                 className="w-full p-3 rounded-md bg-transparent text-gray-300 ring-2 ring-neutral-800 focus:outline-none focus:ring-2 focus:ring-primary"
+                value={description}
+                onChange={e=>setDescription(e.target.value)}
               />
             </div>
 
@@ -65,6 +117,8 @@ export default function CreateAccount() {
                 type="text"
                 placeholder="Eg. 200,000"
                 className="w-full p-3 rounded-md bg-transparent text-gray-300 ring-2 ring-neutral-800 focus:outline-none focus:ring-2 focus:ring-primary"
+                value={goal}
+                onChange={e=>setGoal(e.target.value)}
               />
             </div>
 
@@ -75,9 +129,11 @@ export default function CreateAccount() {
                 type="date"
                 placeholder="Eg. 200,000"
                 className="mb-4 w-full p-3 rounded-md bg-transparent text-gray-300 ring-2 ring-neutral-800 focus:outline-none focus:ring-2 focus:ring-primary"
+                value={endDate}
+                onChange={e=>setEndDate(e.target.value)}
               />
             </div>
-            <Button name="continue" href="/" variant="primary" type="submit" className="w-full mt-3" />
+            <button onClick={e=>submit(e)} className="bg-primary text-white block w-full py-3 rounded-xl">Continue</button>
           </form>
 
         </div>

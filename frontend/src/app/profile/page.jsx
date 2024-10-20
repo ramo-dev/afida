@@ -1,34 +1,42 @@
 "use client"
 import Image from 'next/image';
-import Link from 'next/link';
+import useSWR from "swr";
+import { fetcher } from '../lib/data';
 import Button from '../components/Button';
 import useAccountStore from '../store/store';
 import Loading from '../loading';
 import { useRouter } from 'next/navigation';
-
-// Dummy data for campaigns
-const currentCampaigns = [
-  { id: 'bizna-campaign', name: 'Bizna Campaign', goal: 50000, raised: 30000, endDate: 'Dec 31, 2024' },
-];
-
-const previousCampaigns = [
-  { id: 'plant-trees', name: 'Plant Trees Initiative', goal: 10000, raised: 10000, endDate: 'Jan 15, 2024' },
-];
+import Campaign from '../components/Campaign';
+import { useAccount } from 'wagmi';
 
 export default function Profile() {
+  const { address } = useAccount();
+  const { data, isError, isLoading, mutate } = useSWR(['/contributions/my',{wallet:address}], fetcher,{
+    // revalidateOnFocus: false,
+    // revalidateOnReconnect: false,
+    // revalidateOnMount: true,
+    // errorRetryInterval: 15000
+  })
   const dicebearAvatar = `https://api.dicebear.com/9.x/identicon/svg?seed=Felix`;
 
   const { user, loading } = useAccountStore();
   const route = useRouter()
 
-  if (loading && !user) {
+  if ((loading && !user) || isLoading) {
     return <Loading />
+  }
+
+  if (isError) {
+    return <div>Error loading data</div>
   }
 
   if (!loading && !user) {
     route.replace("/");
     return null
   }
+
+  console.log(data)
+  let today = new Date()
 
   return (
     <div className="min-h-screen bg-black text-white p-6">
@@ -58,22 +66,12 @@ export default function Profile() {
           <div>
             <h2 className="text-2xl font-bold mb-4">Current Campaigns</h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              {currentCampaigns.map((campaign) => (
-                <Link href={`/campaigns/${campaign.id}`} key={campaign.id}>
-                  <div className="bg-neutral-800 p-5 rounded-lg hover:bg-neutral-700 transition-colors">
-                    <h3 className="text-xl font-semibold my-2">{campaign.name}</h3>
-                    <p className="text-gray-400 my-2">Goal: ${campaign.goal}</p>
-                    <p className="text-gray-400 my-2">Raised: ${campaign.raised}</p>
-                    <p className="text-gray-400 my-2">End Date: {campaign.endDate}</p>
-                    <div className="mt-2 w-full my-2 bg-neutral-700 rounded-full h-3">
-                      <div
-                        className="bg-primary h-3 rounded-full"
-                        style={{ width: `${(campaign.raised / campaign.goal) * 100}%` }}
-                      ></div>
-                    </div>
-                  </div>
-                </Link>
-              ))}
+              {
+                data.filter(campaign=>new Date(campaign.date)>today)
+                .map((campaign) => (
+                  <Campaign key={campaign.id} campaign={campaign} />
+                ))
+              }
             </div>
           </div>
 
@@ -81,19 +79,12 @@ export default function Profile() {
           <div>
             <h2 className="text-2xl font-bold mb-4">Previous Campaigns</h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              {previousCampaigns.map((campaign) => (
-                <Link href={`/campaigns/${campaign.id}`} key={campaign.id}>
-                  <div className="bg-neutral-800 p-4 rounded-lg hover:bg-neutral-700 transition-colors">
-                    <h3 className="text-xl font-semibold my-2">{campaign.name}</h3>
-                    <p className="text-gray-400 my-2">Goal: ${campaign.goal}</p>
-                    <p className="text-gray-400 my-2">Raised: ${campaign.raised}</p>
-                    <p className="text-gray-400 my-2">End Date: {campaign.endDate}</p>
-                    <div className="mt-2 w-full bg-neutral-700 rounded-full h-3 my-2">
-                      <div className="bg-primary h-3 rounded-full" style={{ width: '100%' }}></div>
-                    </div>
-                  </div>
-                </Link>
-              ))}
+              {
+                data.filter(campaign=>new Date(campaign.date)<today)
+                .map((campaign) => (
+                  <Campaign key={campaign.id} campaign={campaign} />
+                ))
+              }
             </div>
           </div>
         </div>
